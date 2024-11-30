@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313'
+baseURL = 'https://blog.nucieda.com'
 languageCode = 'en-us'
 title = 'Segmentation Fault'
 theme = 'PaperMod'
