@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Segmentation Fault</description>
     <generator>Hugo -- 0.139.2</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nucieda.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test</title>
+      <link>https://blog.nucieda.com/posts/posts/test/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.nucieda.com/posts/posts/test/</guid>
+      <description>&lt;h1 id=&#34;this-is-a-post&#34;&gt;This is a post&lt;/h1&gt;
+&lt;p&gt;![[Pasted image 20241130191826.png]]&lt;/p&gt;
+&lt;p&gt;![[Pasted image 20241130192007.png]]&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

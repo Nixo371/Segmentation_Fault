@@ -1,7 +1,7 @@
 ---
 title: Test
 date: 2024-11-30
-draft: true
+draft: false
 ---
 
 # This is a post
