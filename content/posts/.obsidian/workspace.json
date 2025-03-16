@@ -1,0 +1,177 @@
+{
+  "main": {
+    "id": "70749820a6988527",
+    "type": "split",
+    "children": [
+      {
+        "id": "8aba9ba934f6308d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "224e23af50f8a425",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "why_i_wont_be_using_cmake.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "why_i_wont_be_using_cmake"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "aa5215bf8078b81b",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f7f565c901fe51b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "06e0d06459cfd26f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "eb7b4f180b27a986",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5ff7f5fd3e0be390",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e1169a7830fc66d5",
+    "type": "split",
+    "children": [
+      {
+        "id": "a937f7d0d873fde1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e7db7187d7e0a06",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "why_i_wont_be_using_cmake.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for why_i_wont_be_using_cmake"
+            }
+          },
+          {
+            "id": "083be2c66c342b1c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "why_i_wont_be_using_cmake.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from why_i_wont_be_using_cmake"
+            }
+          },
+          {
+            "id": "de53a88dce14c2b3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "82e73316b5095de0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "why_i_wont_be_using_cmake.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of why_i_wont_be_using_cmake"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "224e23af50f8a425",
+  "lastOpenFiles": [
+    "2024-12-01.md",
+    "why_i_wont_be_using_cmake.md",
+    "Pasted image 20241130192007.png"
+  ]
+}
