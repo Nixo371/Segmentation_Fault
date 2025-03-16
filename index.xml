@@ -4,18 +4,17 @@
     <title>Segmentation Fault</title>
     <link>https://blog.nucieda.com/</link>
     <description>Recent content on Segmentation Fault</description>
-    <generator>Hugo -- 0.139.2</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nucieda.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>https://blog.nucieda.com/posts/test/</link>
-      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://blog.nucieda.com/posts/test/</guid>
-      <description>&lt;h1 id=&#34;this-is-a-post&#34;&gt;This is a post&lt;/h1&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;https://blog.nucieda.com/images/Pasted%20image%2020241130191826.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;Image Description&#34; loading=&#34;lazy&#34; src=&#34;https://blog.nucieda.com/images/Pasted%20image%2020241130192007.png&#34;&gt;&lt;/p&gt;</description>
+      <title>Why I won&#39;t be using CMake on my CLI chess app</title>
+      <link>https://blog.nucieda.com/posts/why_i_wont_be_using_cmake/</link>
+      <pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nucieda.com/posts/why_i_wont_be_using_cmake/</guid>
+      <description>&lt;h1 id=&#34;the-mistake&#34;&gt;The Mistake&lt;/h1&gt;
+&lt;p&gt;I recently started making a chess app called &lt;code&gt;chessCLI&lt;/code&gt;. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using &lt;code&gt;curl&lt;/code&gt;. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn&amp;rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
