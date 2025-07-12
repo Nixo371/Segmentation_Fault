@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Why my sudoku solver sucks. | Segmentation Fault</title>
+<meta name="keywords" content="">
+<meta name="description" content="I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it&rsquo;s not as good as I want it to be, and I&rsquo;ll keep iterating on it. For now let&rsquo;s say this is">
+<meta name="author" content="">
+<link rel="canonical" href="https://blog.nucieda.com/posts/sudoku-solver/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.nucieda.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.nucieda.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.nucieda.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.nucieda.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.nucieda.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.nucieda.com/posts/sudoku-solver/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.nucieda.com/posts/sudoku-solver/">
+  <meta property="og:site_name" content="Segmentation Fault">
+  <meta property="og:title" content="Why my sudoku solver sucks.">
+  <meta property="og:description" content="I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it’s not as good as I want it to be, and I’ll keep iterating on it. For now let’s say this is">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-12T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Why my sudoku solver sucks.">
+<meta name="twitter:description" content="I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it&rsquo;s not as good as I want it to be, and I&rsquo;ll keep iterating on it. For now let&rsquo;s say this is">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.nucieda.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Why my sudoku solver sucks.",
+      "item": "https://blog.nucieda.com/posts/sudoku-solver/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why my sudoku solver sucks.",
+  "name": "Why my sudoku solver sucks.",
+  "description": "I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it\u0026rsquo;s not as good as I want it to be, and I\u0026rsquo;ll keep iterating on it. For now let\u0026rsquo;s say this is\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it’s not as good as I want it to be, and I’ll keep iterating on it. For now let’s say this is\nSudoku Solver v1 Sudoku via backtracking is super simple to understand. This is the algorithm:\nGuess a number to put in the first cell Check if you’ve broken any sudoku rules (same number in the same row, column, or region). If so, guess a different number Move to the next cell Repeat until you’ve solved the whole grid If you ever run out of numbers for a cell, you have to change your guess of the previous cell, and so on recursively Setbacks I need to pick a format for inputting and outputting a sudoku, one that is easy to parse and readily available. On my search for a puzzle generator I found QQWings which had this format:\n......162...12....5.....3.....6..51....5872.6.......3.6...3.7....2....58..89.6... Simple enough, I downloaded the command line version and created 3 files, each one having 1000 generated puzzles of easy, intermediate, and expert difficulties.\nThen I ran my program against the easy file and waited. I made a function to print out the current state of the puzzle in a human readable way so I could see what my algorithm was doing:\n------------------------------- | 3 4 8 | 7 1 5 | 9 2 6 | | 1 6 2 | 9 8 4 | 3 5 7 | | 5 9 7 | 2 6 3 | 4 8 1 | ------------------------------- | 8 7 5 | 6 4 | 9 3 | | 6 | 5 3 | | | 2 9 | 8 1 | 7 | ------------------------------- | | 8 | | | 9 | 1 2 | 5 3 | | 1 | 6 | 2 | ------------------------------- Which led me to quickly realizing that it was going to take forever, as it had taken about 10 minutes to solve the first 30 puzzles. Ctrl+C and back to the drawing board.\nTurns out profilers aren’t just to show off I ran a bunch of easy diagnostics like printing the times that each puzzle took and immediately noticed that there were puzzles that took less than a second and others that took way way longer (shout out to one that took ~1800 seconds). If you’re curious, this is it:\n.....27.8....1.3.........................5..26..3.71...8.19..2.5.3.26.....15...97 The backtracking approach is fastest when it has to do most of the guessing near the end, where it can quickly eliminate wrong guesses. This puzzle is an outlier in that most of the clues are at the end, meaning a lot of wrong guesses happen so early that it takes millions of iterations to change those guesses.\nI also wrote a Profiler class so I could see how long the validation function took in comparison to the rest (I hate C++ templates so much), turns out it accounts for \u003e90% of solving time.\nClearly the issue lies in that my check_valid function is too slow, so I need to speed it up in any way possible. One immediate error I spotted is that the function checks the whole puzzle for errors. The way I’ve implemented my solver it only needs to check 1 row, column, and region. I modified the function to take a row and column variable so that it only checks the corresponding areas. This one change sped the solving process up five fold.\nThat puzzle that took ~1800 seconds? Now it only takes ~360.\nThat still sucks 6 minutes… for an easy sudoku puzzle. There are humans that can do them in under a minute. Check out Fastest SuDoku Solver’s 41 second solve, it’s insane.\nI took the first 100 easy puzzles and ran them through my solver for a total time of 466.645 seconds (average of 3 runs). And the infamous puzzle takes ~335 seconds of that, nearly 72% of the total runtime for a single puzzle.\nI had our AI overlords make a Python script to make some matplotlib graphs of the puzzle times: The main columns show the total time the validation function is run, and the remaining darker column is the total time for each puzzle. While it’s clear that it’s an outlier (4.611s average time including puzzle #74, 1.3085s without), I still think my program should be able to handle it in a reasonable amount of time.\nSo clearly there’s more work to be done, and I already have some ideas that I’ll implement and test with.\nOne is instead of running through all 9 numbers, have each cell store an array of possible values and eliminate possibilities from given clues. This, if done properly, would actually allow for a complete removal of a validation function, since having an “empty” array would be the indication that a mistake was made.\nHere’s the project on GitHub if you want to try it out yourself. I won’t merge any PRs but I definitely will read and comment on them :)\n",
+  "wordCount" : "871",
+  "inLanguage": "en",
+  "datePublished": "2025-07-12T00:00:00Z",
+  "dateModified": "2025-07-12T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.nucieda.com/posts/sudoku-solver/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Segmentation Fault",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.nucieda.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.nucieda.com/" accesskey="h" title="Segmentation Fault (Alt + H)">Segmentation Fault</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Why my sudoku solver sucks.
+    </h1>
+    <div class="post-meta"><span title='2025-07-12 00:00:00 +0000 UTC'>July 12, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it&rsquo;s not as good as I want it to be, and I&rsquo;ll keep iterating on it. For now let&rsquo;s say this is</p>
+<h2 id="sudoku-solver-v1">Sudoku Solver v1<a hidden class="anchor" aria-hidden="true" href="#sudoku-solver-v1">#</a></h2>
+<p>Sudoku via backtracking is super simple to understand. This is the algorithm:</p>
+<ol>
+<li>Guess a number to put in the first cell</li>
+<li>Check if you&rsquo;ve broken any sudoku rules (same number in the same row, column, or region). If so, guess a different number</li>
+<li>Move to the next cell</li>
+<li>Repeat until you&rsquo;ve solved the whole grid</li>
+<li>If you ever run out of numbers for a cell, you have to change your guess of the previous cell, and so on recursively</li>
+</ol>
+<h1 id="setbacks">Setbacks<a hidden class="anchor" aria-hidden="true" href="#setbacks">#</a></h1>
+<p>I need to pick a format for inputting and outputting a sudoku, one that is easy to parse and readily available. On my search for a puzzle generator I found <a href="https://qqwing.com/generate.html">QQWings</a> which had this format:</p>
+<pre tabindex="0"><code>......162...12....5.....3.....6..51....5872.6.......3.6...3.7....2....58..89.6...
+</code></pre><p>Simple enough, I downloaded the command line version and created 3 files, each one having 1000 generated puzzles of easy, intermediate, and expert difficulties.</p>
+<p>Then I ran my program against the easy file and waited. I made a function to print out the current state of the puzzle in a human readable way so I could see what my algorithm was doing:</p>
+<pre tabindex="0"><code>-------------------------------
+| 3  4  8 | 7  1  5 | 9  2  6 |
+| 1  6  2 | 9  8  4 | 3  5  7 |
+| 5  9  7 | 2  6  3 | 4  8  1 |
+-------------------------------
+| 8  7  5 | 6  4    |    9  3 |
+| 6       | 5  3    |         |
+| 2     9 | 8     1 |    7    |
+-------------------------------
+|         |       8 |         |
+| 9       | 1     2 | 5  3    |
+|       1 |       6 | 2       |
+-------------------------------
+</code></pre><p>Which led me to quickly realizing that it was going to take forever, as it had taken about 10 minutes to solve the first 30 puzzles. Ctrl+C and back to the drawing board.</p>
+<h1 id="turns-out-profilers-arent-just-to-show-off">Turns out profilers aren&rsquo;t just to show off<a hidden class="anchor" aria-hidden="true" href="#turns-out-profilers-arent-just-to-show-off">#</a></h1>
+<p>I ran a bunch of easy diagnostics like printing the times that each puzzle took and immediately noticed that there were puzzles that took less than a second and others that took way way longer (shout out to one that took ~1800 seconds). If you&rsquo;re curious, this is it:</p>
+<pre tabindex="0"><code>.....27.8....1.3.........................5..26..3.71...8.19..2.5.3.26.....15...97
+</code></pre><p>The backtracking approach is fastest when it has to do most of the guessing near the end, where it can quickly eliminate wrong guesses. This puzzle is an outlier in that most of the clues are at the end, meaning a lot of wrong guesses happen so early that it takes millions of iterations to change those guesses.</p>
+<p>I also wrote a Profiler class so I could see how long the validation function took in comparison to the rest (I hate C++ templates so much), turns out it accounts for &gt;90% of solving time.</p>
+<p>Clearly the issue lies in that my <code>check_valid</code> function is too slow, so I need to speed it up in any way possible. One immediate error I spotted is that the function checks the whole puzzle for errors. The way I&rsquo;ve implemented my solver it only needs to check 1 row, column, and region. I modified the function to take a <code>row</code> and <code>column</code> variable so that it only checks the corresponding areas. This one change sped the solving process up five fold.</p>
+<p>That puzzle that took ~1800 seconds? Now it only takes ~360.</p>
+<h1 id="that-still-sucks">That still sucks<a hidden class="anchor" aria-hidden="true" href="#that-still-sucks">#</a></h1>
+<p>6 minutes&hellip; for an <strong>easy</strong> sudoku puzzle. There are <em>humans</em> that can do them in under a minute. Check out <a href="https://youtu.be/IPfsrt58Aow">Fastest SuDoku Solver</a>&rsquo;s 41 second solve, it&rsquo;s insane.</p>
+<p>I took the first 100 easy puzzles and ran them through my solver for a total time of 466.645 seconds (average of 3 runs). And the infamous puzzle takes ~335 seconds of that, nearly 72% of the total runtime for a <em><strong>single</strong></em> puzzle.</p>
+<p>I had our AI overlords make a Python script to make some matplotlib graphs of the puzzle times:
+<img alt="Image Description" loading="lazy" src="/images/Pasted%20image%2020250713001228.png">
+The main columns show the total time the validation function is run, and the remaining darker column is the total time for each puzzle. While it&rsquo;s clear that it&rsquo;s an outlier (4.611s average time including puzzle #74, 1.3085s without), I still think my program should be able to handle it in a reasonable amount of time.</p>
+<p>So clearly there&rsquo;s more work to be done, and I already have some ideas that I&rsquo;ll implement and test with.</p>
+<p>One is instead of running through all 9 numbers, have each cell store an array of possible values and eliminate possibilities from given clues. This, if done properly,  would actually allow for a complete removal of a validation function, since having an &ldquo;empty&rdquo; array would be the indication that a mistake was made.</p>
+<p>Here&rsquo;s the project on <a href="https://github.com/Nixo371/SudokuSolver/tree/master">GitHub</a> if you want to try it out yourself. I won&rsquo;t merge any PRs but I definitely will read and comment on them :)</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.nucieda.com/">Segmentation Fault</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
