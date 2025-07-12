@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Why I won&#39;t be using CMake on my CLI chess app | Segmentation Fault</title>
+<meta name="keywords" content="">
+<meta name="description" content="The Mistake
+I recently started making a chess app called chessCLI. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using curl. Even in its earliest version, it was already the largest C&#43;&#43; project I had ever made, and so manually building wasn&rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.">
+<meta name="author" content="">
+<link rel="canonical" href="https://blog.nucieda.com/posts/gnu-make/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.nucieda.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.nucieda.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.nucieda.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.nucieda.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.nucieda.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.nucieda.com/posts/gnu-make/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.nucieda.com/posts/gnu-make/">
+  <meta property="og:site_name" content="Segmentation Fault">
+  <meta property="og:title" content="Why I won&#39;t be using CMake on my CLI chess app">
+  <meta property="og:description" content="The Mistake I recently started making a chess app called chessCLI. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using curl. Even in its earliest version, it was already the largest C&#43;&#43; project I had ever made, and so manually building wasn’t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-16T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Why I won&#39;t be using CMake on my CLI chess app">
+<meta name="twitter:description" content="The Mistake
+I recently started making a chess app called chessCLI. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using curl. Even in its earliest version, it was already the largest C&#43;&#43; project I had ever made, and so manually building wasn&rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.nucieda.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Why I won't be using CMake on my CLI chess app",
+      "item": "https://blog.nucieda.com/posts/gnu-make/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why I won't be using CMake on my CLI chess app",
+  "name": "Why I won\u0027t be using CMake on my CLI chess app",
+  "description": "The Mistake I recently started making a chess app called chessCLI. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using curl. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn\u0026rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "The Mistake I recently started making a chess app called chessCLI. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using curl. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn’t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.\nAfter some quick googling I found out about CMake, and skimming a few websites and the official CMake one I decided to try it as it sounded like an easier-to-use Make that would also compile to any OS. So I did what any sane person would do and asked ChatGPT to generate a CMake build system for my project and then copy-pasted it into my project. I was surprised that it worked first try (after a lot of compiler errors that I fixed), but decided to move on and forget about it.\nThe way ChatGPT explained it to me I would have to run cmake .. from within a build/ directory, and then cmake --build . for the final binary to be generated there. This got tedious after 2 times so I made a little shell script compile.sh and added it to the repository:\n#!/bin/bash mkdir build cd build cmake .. cmake --build . Until now this has worked fine but I really didn’t like having to run a shell script to compile my code, as well as not actually understanding how CMake works behind the hood or if multi-platform compatibility even mattered considering the end goal was a curl-able app.\nSo I did some more extensive research into Make and re-discovered why I love this build system. It’s incredibly simple, yet totally customizable. I highly recommend this video by Gabriel Parmer if you want to learn about Make, as it truly is the resource that helped me the most.\nThe Hero I Needed At first glance, Make doesn’t seem all that different to a shell script, essentially just running commands like g++ main.cpp or anything else you give it, but the deeper you dive, the more you’ll see how powerful this simple tool can really be.\nRules Inside your Makefile you can set rules. Rules tell Make how to make a certain file. So for example, a simple Makefile for a simple app could look like:\nmy_app: g++ main.cpp -o my_app This tells Make that to generate the file my_app, it just needs to run the commands underneath that rule to create that file.\nHowever, make can be used not just to make files, one very common example of this is something like:\nclean: rm -rf $(OBJS) If you assume that $(OBJS) is a variable containing the object files created as an intermediate step of compilation, this line simply deletes those object files. But the true beauty is in the fact that this rule now allows you to run just those instructions with make clean. No random directory, no --build, just that. I’ve also seen rules such as fclean to do a full clean (including the binary).\nBut it gets even better. After the colon, you can specify some prerequisites that MUST be done before that rule gets executed. So going back to that simple example, we should expand it to look like:\nmy_app: main.cpp g++ main.cpp -o my_app This tells Make that to create the file my_app, it must have the file main.cpp before it can generate it. So now if we don’t have main.cpp, Make will throw an error instead of the compiler.\nVariables We can also set variables in Make, which helps in not having refactors take forever. Here are some common variables I see in a lot of Makefiles, which I have used in my own:\nCC = g++ CFLAGS = -Wall -Werror -Wextra SRCS = some.c \\ list.c \\ of.c \\ files.c OBJS = $(SRC:.c=.o) BIN = bin You can probably start to see what these are used for, since now we can replace our simple Makefile with:\n$(BIN): $(SRCS) $(CC) $(SRCS) -o $(BIN) By default, running make will execute the first rule, so a common practice is to have the first rule be all:\nall: $(BIN) Note that in this case, we don’t specify any actual commands to be run in that rule, and that’s totally fine. We’re just allowing make to default into creating the binary.\nThere’s so much more about Make that I might talk about in another post but I’ll finish with one of my favorite rules:\n%.o: %.c $(CC) $(CFLAGS) -c -o $@ $^ ",
+  "wordCount" : "803",
+  "inLanguage": "en",
+  "datePublished": "2025-03-16T00:00:00Z",
+  "dateModified": "2025-03-16T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.nucieda.com/posts/gnu-make/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Segmentation Fault",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.nucieda.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.nucieda.com/" accesskey="h" title="Segmentation Fault (Alt + H)">Segmentation Fault</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Why I won&#39;t be using CMake on my CLI chess app
+    </h1>
+    <div class="post-meta"><span title='2025-03-16 00:00:00 +0000 UTC'>March 16, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="the-mistake">The Mistake<a hidden class="anchor" aria-hidden="true" href="#the-mistake">#</a></h1>
+<p>I recently started making a chess app called <code>chessCLI</code>. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using <code>curl</code>. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn&rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.</p>
+<p>After some quick googling I found out about CMake, and skimming a few websites and the official CMake one I decided to try it as it sounded like an easier-to-use Make that would also compile to any OS. So I did what any sane person would do and asked ChatGPT to generate a CMake build system for my project and then copy-pasted it into my project. I was surprised that it worked first try (after a lot of compiler errors that I fixed), but decided to move on and forget about it.</p>
+<p>The way ChatGPT explained it to me I would have to run <code>cmake ..</code> from within a <code>build/</code> directory, and then <code>cmake --build .</code> for the final binary to be generated there. This got tedious after 2 times so I made a little shell script <code>compile.sh</code> and added it to the repository:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>mkdir build
+</span></span><span style="display:flex;"><span>cd build
+</span></span><span style="display:flex;"><span>cmake ..
+</span></span><span style="display:flex;"><span>cmake --build .
+</span></span></code></pre></div><p>Until now this has worked fine but I really didn&rsquo;t like having to run a shell script to compile my code, as well as not actually understanding how CMake works behind the hood or if multi-platform compatibility even mattered considering the end goal was a <code>curl</code>-able app.</p>
+<p>So I did some more extensive research into Make and re-discovered why I love this build system. It&rsquo;s incredibly simple, yet totally customizable. I highly recommend <a href="https://youtu.be/DtGrdB8wQ_8?si=U0rr9qPyuju5aykq">this video</a> by Gabriel Parmer if you want to learn about Make, as it truly is the resource that helped me the most.</p>
+<h1 id="the-hero-i-needed">The Hero I Needed<a hidden class="anchor" aria-hidden="true" href="#the-hero-i-needed">#</a></h1>
+<p>At first glance, Make doesn&rsquo;t seem all that different to a shell script, essentially just running commands like <code>g++ main.cpp</code> or anything else you give it, but the deeper you dive, the more you&rsquo;ll see how powerful this simple tool can really be.</p>
+<h3 id="rules">Rules<a hidden class="anchor" aria-hidden="true" href="#rules">#</a></h3>
+<p>Inside your Makefile you can set rules. Rules tell Make how to make a certain file. So for example, a simple Makefile for a simple app could look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#a6e22e">my_app</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	g++ main.cpp -o my_app
+</span></span></code></pre></div><p>This tells Make that to generate the file <code>my_app</code>, it just needs to run the commands underneath that rule to create that file.</p>
+<p>However, make can be used not just to make files, one very common example of this is something like:</p>
+<pre tabindex="0"><code>clean:
+	rm -rf $(OBJS)
+</code></pre><p>If you assume that <code>$(OBJS)</code> is a variable containing the object files created as an intermediate step of compilation, this line simply deletes those object files. But the true beauty is in the fact that this rule now allows you to run <strong>just</strong> those instructions with <code>make clean</code>. No random directory, no <code>--build</code>, just that. I&rsquo;ve also seen rules such as <code>fclean</code> to do a full clean (including the binary).</p>
+<p>But it gets even better. After the colon, you can specify some prerequisites that MUST be done before that rule gets executed. So going back to that simple example, we should expand it to look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#a6e22e">my_app</span><span style="color:#f92672">:</span> main.cpp
+</span></span><span style="display:flex;"><span>	g++ main.cpp -o my_app
+</span></span></code></pre></div><p>This tells Make that to create the file <code>my_app</code>, it must have the file <code>main.cpp</code> before it can generate it. So now if we don&rsquo;t have <code>main.cpp</code>, Make will throw an error instead of the compiler.</p>
+<h3 id="variables">Variables<a hidden class="anchor" aria-hidden="true" href="#variables">#</a></h3>
+<p>We can also set variables in Make, which helps in not having refactors take forever. Here are some common variables I see in a lot of Makefiles, which I have used in my own:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span>CC <span style="color:#f92672">=</span> g++
+</span></span><span style="display:flex;"><span>CFLAGS <span style="color:#f92672">=</span> -Wall -Werror -Wextra
+</span></span><span style="display:flex;"><span>SRCS <span style="color:#f92672">=</span> some.c <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	list.c <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	of.c <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	files.c
+</span></span><span style="display:flex;"><span>OBJS <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>SRC:.c<span style="color:#f92672">=</span>.o<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BIN <span style="color:#f92672">=</span> bin
+</span></span></code></pre></div><p>You can probably start to see what these are used for, since now we can replace our simple Makefile with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#a6e22e">$(BIN)</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>SRCS<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>SRCS<span style="color:#66d9ef">)</span> -o <span style="color:#66d9ef">$(</span>BIN<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>By default, running <code>make</code> will execute the first rule, so a common practice is to have the first rule be <code>all</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">$(</span>BIN<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>Note that in this case, we don&rsquo;t specify any actual commands to be run in that rule, and that&rsquo;s totally fine. We&rsquo;re just allowing <code>make</code> to default into creating the binary.</p>
+<p>There&rsquo;s so much more about Make that I might talk about in another post but I&rsquo;ll finish with one of my favorite rules:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#a6e22e">%.o</span><span style="color:#f92672">:</span> %.c
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">$(</span>CC<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>CFLAGS<span style="color:#66d9ef">)</span> -c -o $@ $^
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.nucieda.com/">Segmentation Fault</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
