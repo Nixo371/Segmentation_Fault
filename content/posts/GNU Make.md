@@ -2,7 +2,6 @@
 title: Why I won't be using CMake on my CLI chess app
 date: 2025-03-16
 draft: false
-author: Nicolas Ucieda
 ---
 # The Mistake
 I recently started making a chess app called `chessCLI`. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using `curl`. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn't an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.

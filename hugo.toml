@@ -2,3 +2,13 @@ baseURL = 'https://blog.nucieda.com'
 languageCode = 'en-us'
 title = 'Segmentation Fault'
 theme = 'PaperMod'
+
+[params]
+	author = "Nicolas Ucieda"
+	email = "nicolas.ucieda@gmail.com"
+
+	ShowIconsInHeader = true
+	socialIcons = [
+		{ name = "email", url = "mailto:nicolas.ucieda@gmail.com" },
+		{ name = "github", url = "https://github.com/Nixo371" },
+	]

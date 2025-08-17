@@ -15,7 +15,7 @@
               "state": {
                 "file": "Home Server.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "Home Server"
@@ -170,11 +170,11 @@
   },
   "active": "224e23af50f8a425",
   "lastOpenFiles": [
-    "Post Template.md",
-    "Home Server.md",
-    "Sudoku Solver.md",
     "Gargoyle.md",
     "GNU Make.md",
+    "Sudoku Solver.md",
+    "Post Template.md",
+    "Home Server.md",
     "2025-03-16.md",
     "Pasted image 20250713001228.png",
     "gargoyle.md",

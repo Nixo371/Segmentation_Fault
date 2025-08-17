@@ -2,10 +2,6 @@
 title: Your Home Server Should Be Free*
 date: 2025-08-17
 draft: false
-author: Nicolas Ucieda
-socialIcons:
-    - name: "x"
-      url: "https://google.com"
 ---
 I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I've always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.
 

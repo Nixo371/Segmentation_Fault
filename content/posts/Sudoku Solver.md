@@ -2,7 +2,6 @@
 title: Why my sudoku solver sucks.
 date: 2025-07-12
 draft: false
-author: Nicolas Ucieda
 ---
 I wanted to make a sudoku solver using backtracking, a project only slightly less common than a todo app. I was genuinely expecting it to take an afternoon and I could be done with it, but as all my projects go, there were a lot of setbacks. Even now, it's not as good as I want it to be, and I'll keep iterating on it. For now let's say this is
 ## Sudoku Solver v1
