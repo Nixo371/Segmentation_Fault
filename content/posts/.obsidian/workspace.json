@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Sudoku Solver.md",
+                "file": "Home Server.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sudoku Solver"
+              "title": "Home Server"
             }
           }
         ]
@@ -170,9 +170,11 @@
   },
   "active": "224e23af50f8a425",
   "lastOpenFiles": [
-    "Pasted image 20250713001228.png",
-    "Post Template.md",
+    "Home Server.md",
     "Sudoku Solver.md",
+    "2025-03-16.md",
+    "Post Template.md",
+    "Pasted image 20250713001228.png",
     "Gargoyle.md",
     "GNU Make.md",
     "gargoyle.md",
