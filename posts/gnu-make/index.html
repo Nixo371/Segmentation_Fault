@@ -173,11 +173,11 @@ I recently started making a chess app called chessCLI. The goal is for it to be 
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://blog.nucieda.com/">Home</a>&nbsp;»&nbsp;<a href="https://blog.nucieda.com/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Why I won&#39;t be using CMake on my CLI chess app
     </h1>
-    <div class="post-meta"><span title='2025-03-16 00:00:00 +0000 UTC'>March 16, 2025</span>&nbsp;·&nbsp;Nicolas Ucieda
+    <div class="post-meta"><span title='2025-03-16 00:00:00 +0000 UTC'>March 16, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;803 words&nbsp;·&nbsp;Nicolas Ucieda
 
 </div>
   </header> 
@@ -233,6 +233,14 @@ I recently started making a chess app called chessCLI. The goal is for it to be 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
+<nav class="paginav">
+  <a class="prev" href="https://blog.nucieda.com/posts/sudoku-solver/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Why my sudoku solver sucks.</span>
+  </a>
+</nav>
+
   </footer>
 </article>
     </main>
@@ -305,6 +313,53 @@ I recently started making a chess app called chessCLI. The goal is for it to be 
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
