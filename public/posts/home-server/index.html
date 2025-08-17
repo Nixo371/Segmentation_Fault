@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Your Home Server Should Be Free* | Segmentation Fault</title>
+<meta name="keywords" content="">
+<meta name="description" content="I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I&rsquo;ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.
+The Optiplex
+I got my hands on an old Dell Optiplex 3050M for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It&rsquo;s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.">
+<meta name="author" content="Nicolas Ucieda">
+<link rel="canonical" href="https://blog.nucieda.com/posts/home-server/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.nucieda.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.nucieda.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.nucieda.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.nucieda.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.nucieda.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.nucieda.com/posts/home-server/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.nucieda.com/posts/home-server/">
+  <meta property="og:site_name" content="Segmentation Fault">
+  <meta property="og:title" content="Your Home Server Should Be Free*">
+  <meta property="og:description" content="I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I’ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.
+The Optiplex I got my hands on an old Dell Optiplex 3050M for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It’s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-17T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Your Home Server Should Be Free*">
+<meta name="twitter:description" content="I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I&rsquo;ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.
+The Optiplex
+I got my hands on an old Dell Optiplex 3050M for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It&rsquo;s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.nucieda.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Your Home Server Should Be Free*",
+      "item": "https://blog.nucieda.com/posts/home-server/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Your Home Server Should Be Free*",
+  "name": "Your Home Server Should Be Free*",
+  "description": "I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I\u0026rsquo;ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.\nThe Optiplex I got my hands on an old Dell Optiplex 3050M for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It\u0026rsquo;s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I’ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.\nThe Optiplex I got my hands on an old Dell Optiplex 3050M for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It’s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.\nI downloaded the latest Debian ISO onto my Ventoy drive (I love Ventoy so much. Seriously, it’s a phenomenal program that lets you load multiple ISOs on a single drive, check it out) and plugged it into the Optiplex, mashing furiously at all the function keys to get to the BIOS, which led to the discovery that the BIOS had a password. After a bit of research I found that I could remove a jumper from the motherboard to reset the BIOS entirely (here’s a video that shows the process).\nBooting into Ventoy, I select the Debian BIOS and get to work doing the (mildly) tedious task of the initial install. Setting all the locale, language, keyboard, time settings. Then the partitioning of the disk which I never remember how to do and by this point have looked it up at least 10 times. But it doesn’t work. I’m going to save you the painful 3 hours it took me to realize what I had done wrong. See, this was my first time installing Debian all on my own, the first time I had help. So when I went to download the ISO, I saw the giant maze of directories and just picked one. I picked wrong. I accidentally got a live version of Debian, which is meant to be run off of an external drive exclusively (like on a USB stick or an external hard drive), so it wouldn’t recognize the PC’s hard drive when I went to format it. Anyways I got the right one, set it up, and was finally at a state where I could start doing stuff.\nTheBox The first and most important thing you should do when configuring any machine is coming up with an appropriate host name. My laptop, for example, has the host name TheMysteryMachine (Arch, btw). I knew I needed to come up with an equally clever and funny name for my home server. After 3 minutes of thinking about it I settled on TheBox, so that’s what it’ll be. Forever.\nI downloaded what I consider to be the baseline programs for any linux server. openssh-server (allows for headless deployment) vim (nano sucks) sudo (did you know this doesn’t come by default?) ufw (firewalls are important, and walls made of fire are cool)\nI also installed some programs I was going to use for my specific use case: docker (why install anything when docker?) samba (network accessible drives is a great QOL for home servers)\nopenssh-server I highly recommend taking some time and understanding how to configure the openssh-server. Personally I like to think about what machines I want to be able to access the server via ssh, then using ssh-copy-id to register my machines as authenticated, then completely disable both root login (PermitRootLogin no) and disable logging in with a password (PasswordAuthentication no). Optionally, you can specify what users are able to be logged into with AllowUsers, and even change what port is used (the default is port 22).\nJellyfin I have some old CDs and DVDs of movies but I no longer have access to a CD/DVD player. Before I lost access, though, I ripped the content off the discs. I had heard of software like Plex and Jellyfin for hosting your own media and thought it would be a great idea to use my home server to be able to watch those movies.\nJellyfin is free so I opted for that (check them out, it’s truly amazing). Their docs demonstrated a way to run it via a docker container, so I followed their guide and after mounting my external hard drive (don’t forget to also include it in your fstab so it’s automatically mounted on reboot) the container seemed to be up with no errors. I still couldn’t access it via my PC and after a bit of thinking I realized I hadn’t configured ufw to allow that port, so after a quick ufw allow 8096, I was able to access my movies through my PC. I had to ip addr show to find the appropriate 192.168.0.xx address and then it was just a matter of typing 192.168.0.11:8096 into my browser for it to appear. I then configured it to my liking via their web interface but that’s not what this project is about, so I’m skipping over that.\nDHCP is the best and worst thing ever After setting up a home server and making sure it works, the next and most important thing to do before you call it done is restart the PC. It needs to be able to still work if power goes out and then back. I’m going to gloss over the less relevant pieces of this: There’s a BIOS setting that allows you to define how the computer behaves when power is reinstated, set that to power on. I mentioned it before but any drives you mounted won’t be mounted after a reset unless you added them to the fstab, so make sure you do that.\nNow comes the networking part, the most confusing part. I’m not going to explain why everyone’s IP address at home starts with 192.168 as it’s not relevant to this post, but I will explain why when I restarted my PC, I couldn’t access my server anymore and after ip addr show it had changed to 192.168.0.12. Turns out almost all routers have this thing called DHCP (Dynamic Host Configuration Protocol). It allows a router to assign an arbitrary IP address (within a specified range) to a new device that connects to the network, which meant that whenever my Optiplex restarted, my router might choose to give it a new IP, locking me out of both ssh and Jellyfin.\nFortunately, there are ways to address this issue. The simplest and most straightforward way is through your router settings. In your browser you go to 192.168.0.1 (sometimes 192.168.1.1) and your router’s login page appears. Usually the credentials will be on your router somewhere, and if not, here’s a list of some brand’s defaults.\nOnce you’re in, you want to navigate to the LAN settings (sometimes it could be under DHCP). Each brand does their settings differently so you might have to dig around the settings to find it. I also recommend looking to see if the configuration has a basic/expert view, and switching to expert. Once in the DHCP settings you should see a setting something along the lines of “static IP/DHCP”. If you’re lucky, your router will allow you to click on a machine’s host name to select it. Otherwise you’ll have to manually type in its MAC address. Then you just tell the router what IP address to reserve for that machine (obviously I picked 192.168.0.69) and after a reset you’ll notice that it’ll always be assigned that local IP.\nWith that solved, I never have to worry about losing access to my server, even if the power goes out, and it didn’t cost me a penny.\nSamba I mentioned before that I wanted to have the drive accessible via the network, in case I wanted to add more files or download them later on. Samba makes this trivial by editing a single configuration file /etc/samba.smb.conf:\n[Media] path = /mnt/media browseable = yes read only = no guest ok = no valid users = urmom Yes seriously, that’s it. [Media] is the name that you’ll use on the network, so you can set that to anything you want. After that you set the password to access the drive:\nsudo smbpasswd -a urmom And then restart the daemon:\nsudo systemctl restart smbd And that’s it! From my Windows PC all I had to do was right click in my file explorer, find the setting to add a network drive and add it by typing in:\n\\\\192.168.0.69\\Media It prompted me for a username and password, which we just set. And once I authenticated myself I had full access to that drive!\nOn my linux laptop it’s as simple as specifying all those parameters in the mount command:\nsudo mount -t cifs //192.168.0.69/Media /mnt/pc-media -o username=urmom and specifying the password once prompted.\nThis only works when I’m connected to my network, which isn’t often, so I set it as an alias in my ~/.zshrc so I can quickly connect to it whenever I need to\nHome Network? More like World Network Well, now I want to be able to watch my movies whenever I’m not home, ideally on any device. Jellyfin allows me to download media to any device but downloading it on my iPhone and trying to cast that to any smart TV that isn’t appleTV equipped proves to be quite challenging. What’s the solution? Opening my home server to the open internet, of course! Jellyfin has a user/password authentication system so I’m not worried about strangers accessing my media library, since only I know my username and password, and I set it up to lock you out after 3 mistakes. Unfortunately this isn’t as simple as typing my public IP address in my URL followed by the 8096 port, since my router just blocks any incoming connections.\nBack in my router settings, I head to my Internet tab and the Port Forwarding subtab. There I forward port 420 to port 8096 of my home server. And just like that, xx.xx.xx.xx:420 shows me the login page!\nBut this isn’t enough for me, I don’t want to have to memorize or have my IP written down, that’s silly. I want an easy to remember URL that’ll just work. I do some research and unfortunately, a typical DNS A register (used to forward a domain name to an IP) doesn’t allow you to specify a port, which makes sense in hindsight.\nSo my solution is to have to remember the port 420 and specify it, or route the connection through a server and forward to my home server. You’ll never guess which I picked.\nI purchased a new domain name specifically for this and routed it to my existing server. On my server I use traefik instead of nginx as a reverse proxy because it’s a much simpler configuration for me. Turns out traefik can do exactly what I need. Just add these lines to the command block in the compose:\n- --providers.docker=true - --providers.file.directory=/etc/traefik/dynamic And this one to the volumes:\n- ./dynamic:/etc/traefik/dynamic And finally, make the dynamic directory and inside it a new file dynamic/jellyfin.yml:\nhttp: routers: jellyfin: rule: Host(`mydomain.example.com`) entryPoints: - websecure service: jellyfin-svc tls: certResolver: myresolver services: jellyfin-svc: loadBalancer: servers: - url: \"http://PUBLIC_IP:8096\" passHostHeader: true Then just restart the docker compose\ndocker compose up --build -d And suddenly I have access to my media library from anywhere and all I have to do is remember my domain, no port needed.\nimport random There’s this really cool project I saw on YouTube a few weeks ago called copyparty, I highly encourage you to watch the video, it’s truly phenomenal. I think adding something like this to my server in the future would be a really cool project, so I might have to do a part 2 to this. Or even something silly like a MInecraft server would be a cool project to experiment with. I doubt the little Optiplex could handle that but there’s only really one way to find out.\nConclusion While I admit, the title is a bit misleading. There’s a lot of truth to it, the point is that you can do a lot of cool things with a crappy old computer you can probably find on second hand markeplaces like Facebook Marketplace, craigslist, etc for $20. This is just my experience with using a machine like that to serve me. I now have the ability to watch my movies whenever I want, even on a plane if I remember to download them beforehand.\n",
+  "wordCount" : "2089",
+  "inLanguage": "en",
+  "datePublished": "2025-08-17T00:00:00Z",
+  "dateModified": "2025-08-17T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Nicolas Ucieda"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.nucieda.com/posts/home-server/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Segmentation Fault",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.nucieda.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.nucieda.com/" accesskey="h" title="Segmentation Fault (Alt + H)">Segmentation Fault</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Your Home Server Should Be Free*
+    </h1>
+    <div class="post-meta"><span title='2025-08-17 00:00:00 +0000 UTC'>August 17, 2025</span>&nbsp;·&nbsp;Nicolas Ucieda
+
+</div>
+  </header> 
+  <div class="post-content"><p>I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I&rsquo;ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.</p>
+<h1 id="the-optiplex">The Optiplex<a hidden class="anchor" aria-hidden="true" href="#the-optiplex">#</a></h1>
+<p>I got my hands on an old <a href="https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3050M/">Dell Optiplex 3050M</a> for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It&rsquo;s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.</p>
+<p>I downloaded the latest Debian ISO onto my Ventoy drive (I love Ventoy so much. Seriously, it&rsquo;s a phenomenal program that lets you load multiple ISOs on a single drive, <a href="https://www.ventoy.net/en/index.html">check it out</a>) and plugged it into the Optiplex, mashing furiously at all the function keys to get to the BIOS, which led to the discovery that the BIOS had a password. After a bit of research I found that I could remove a jumper from the motherboard to reset the BIOS entirely (<a href="https://youtu.be/DisoAysLBcU?si=SqAgsHQSV6lj53mp">here&rsquo;s a video that shows the process</a>).</p>
+<p>Booting into Ventoy, I select the Debian BIOS and get to work doing the (mildly) tedious task of the initial install. Setting all the locale, language, keyboard, time settings. Then the partitioning of the disk which I never remember how to do and by this point have looked it up at least 10 times. But it doesn&rsquo;t work. I&rsquo;m going to save you the painful 3 hours it took me to realize what I had done wrong. See, this was my first time installing Debian all on my own, the first time I had help. So when I went to download the ISO, I saw the giant maze of directories and just picked one. I picked wrong. I accidentally got a live version of Debian, which is meant to be run off of an external drive exclusively (like on a USB stick or an external hard drive), so it wouldn&rsquo;t recognize the PC&rsquo;s hard drive when I went to format it. Anyways I got the right one, set it up, and was finally at a state where I could start doing stuff.</p>
+<h1 id="thebox">TheBox<a hidden class="anchor" aria-hidden="true" href="#thebox">#</a></h1>
+<p>The first and most important thing you should do when configuring any machine is coming up with an appropriate host name. My laptop, for example, has the host name <strong>TheMysteryMachine</strong> (Arch, btw). I knew I needed to come up with an equally clever and funny name for my home server. After 3 minutes of thinking about it I settled on <strong>TheBox</strong>, so that&rsquo;s what it&rsquo;ll be. Forever.</p>
+<p>I downloaded what I consider to be the baseline programs for any linux server.
+<code>openssh-server</code> (allows for headless deployment)
+<code>vim</code> (nano sucks)
+<code>sudo</code> (did you know this doesn&rsquo;t come by default?)
+<code>ufw</code> (firewalls are important, and walls made of fire are cool)</p>
+<p>I also installed some programs I was going to use for my specific use case:
+<code>docker</code> (why install anything when docker?)
+<code>samba</code> (network accessible drives is a great QOL for home servers)</p>
+<h2 id="openssh-server">openssh-server<a hidden class="anchor" aria-hidden="true" href="#openssh-server">#</a></h2>
+<p>I highly recommend taking some time and understanding how to configure the openssh-server.
+Personally I like to think about what machines I want to be able to access the server via <code>ssh</code>, then using <code>ssh-copy-id</code> to register my machines as authenticated, then completely disable both root login (<code>PermitRootLogin no</code>) and disable logging in with a password (<code>PasswordAuthentication no</code>). Optionally, you can specify what users are able to be logged into with <code>AllowUsers</code>, and even change what port is used (the default is port 22).</p>
+<h1 id="jellyfin">Jellyfin<a hidden class="anchor" aria-hidden="true" href="#jellyfin">#</a></h1>
+<p>I have some old CDs and DVDs of movies but I no longer have access to a CD/DVD player. Before I lost access, though, I ripped the content off the discs. I had heard of software like Plex and Jellyfin for hosting your own media and thought it would be a great idea to use my home server to be able to watch those movies.</p>
+<p>Jellyfin is free so I opted for that (<a href="https://jellyfin.org/">check them out</a>, it&rsquo;s truly amazing). Their docs demonstrated a way to run it via a docker container, so I followed their guide and after mounting my external hard drive (don&rsquo;t forget to also include it in your fstab so it&rsquo;s automatically mounted on reboot) the container seemed to be up with no errors. I still couldn&rsquo;t access it via my PC and after a bit of thinking I realized I hadn&rsquo;t configured ufw to allow that port, so after a quick <code>ufw allow 8096</code>, I was able to access my movies through my PC. I had to <code>ip addr show</code> to find the appropriate <code>192.168.0.xx</code> address and then it was just a matter of typing <code>192.168.0.11:8096</code> into my browser for it to appear. I then configured it to my liking via their web interface but that&rsquo;s not what this project is about, so I&rsquo;m skipping over that.</p>
+<h1 id="dhcp-is-the-best-and-worst-thing-ever">DHCP is the best and worst thing ever<a hidden class="anchor" aria-hidden="true" href="#dhcp-is-the-best-and-worst-thing-ever">#</a></h1>
+<p>After setting up a home server and making sure it works, the next and most important thing to do before you call it done is restart the PC. It needs to be able to still work if power goes out and then back. I&rsquo;m going to gloss over the less relevant pieces of this:
+There&rsquo;s a BIOS setting that allows you to define how the computer behaves when power is reinstated, set that to power on.
+I mentioned it before but any drives you mounted won&rsquo;t be mounted after a reset <strong>unless</strong> you added them to the <code>fstab</code>, so make sure you do that.</p>
+<p>Now comes the networking part, the most confusing part. I&rsquo;m not going to explain why everyone&rsquo;s IP address at home starts with <code>192.168</code> as it&rsquo;s not relevant to this post, but I will explain why when I restarted my PC, I couldn&rsquo;t access my server anymore and after <code>ip addr show</code> it had changed to <code>192.168.0.12</code>. Turns out almost all routers have this thing called DHCP (Dynamic Host Configuration Protocol). It allows a router to assign an arbitrary IP address (within a specified range) to a new device that connects to the network, which meant that whenever my Optiplex restarted, my router might choose to give it a new IP, locking me out of both <code>ssh</code> and Jellyfin.</p>
+<p>Fortunately, there are ways to address this issue. The simplest and most straightforward way is through your router settings. In your browser you go to <code>192.168.0.1</code> (sometimes <code>192.168.1.1</code>) and your router&rsquo;s login page appears. Usually the credentials will be on your router somewhere, and if not, <a href="https://bcca.org/routers-default-passwords/">here&rsquo;s</a> a list of some brand&rsquo;s defaults.</p>
+<p>Once you&rsquo;re in, you want to navigate to the LAN settings (sometimes it could be under DHCP). Each brand does their settings differently so you might have to dig around the settings to find it. I also recommend looking to see if the configuration has a basic/expert view, and switching to expert. Once in the DHCP settings you should see a setting something along the lines of &ldquo;static IP/DHCP&rdquo;. If you&rsquo;re lucky, your router will allow you to click on a machine&rsquo;s host name to select it. Otherwise you&rsquo;ll have to manually type in its MAC address. Then you just tell the router what IP address to reserve for that machine (obviously I picked <code>192.168.0.69</code>) and after a reset you&rsquo;ll notice that it&rsquo;ll always be assigned that local IP.</p>
+<p>With that solved, I never have to worry about losing access to my server, even if the power goes out, and it didn&rsquo;t cost me a penny.</p>
+<h1 id="samba">Samba<a hidden class="anchor" aria-hidden="true" href="#samba">#</a></h1>
+<p>I mentioned before that I wanted to have the drive accessible via the network, in case I wanted to add more files or download them later on. Samba makes this trivial by editing a single configuration file <code>/etc/samba.smb.conf</code>:</p>
+<pre tabindex="0"><code>[Media]
+   path = /mnt/media
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = urmom
+</code></pre><p>Yes seriously, that&rsquo;s it. <code>[Media]</code> is the name that you&rsquo;ll use on the network, so you can set that to anything you want. After that you set the password to access the drive:</p>
+<pre tabindex="0"><code>sudo smbpasswd -a urmom
+</code></pre><p>And then restart the daemon:</p>
+<pre tabindex="0"><code>sudo systemctl restart smbd
+</code></pre><p>And that&rsquo;s it!
+From my Windows PC all I had to do was right click in my file explorer, find the setting to add a network drive and add it by typing in:</p>
+<pre tabindex="0"><code>\\192.168.0.69\Media
+</code></pre><p>It prompted me for a username and password, which we just set. And once I authenticated myself I had full access to that drive!</p>
+<p>On my linux laptop it&rsquo;s as simple as specifying all those parameters in the mount command:</p>
+<pre tabindex="0"><code>sudo mount -t cifs //192.168.0.69/Media /mnt/pc-media -o username=urmom
+</code></pre><p>and specifying the password once prompted.</p>
+<p>This only works when I&rsquo;m connected to my network, which isn&rsquo;t often, so I set it as an alias in my <code>~/.zshrc</code> so I can quickly connect to it whenever I need to</p>
+<h1 id="home-network-more-like-world-network">Home Network? More like World Network<a hidden class="anchor" aria-hidden="true" href="#home-network-more-like-world-network">#</a></h1>
+<p>Well, now I want to be able to watch my movies whenever I&rsquo;m not home, ideally on any device. Jellyfin allows me to download media to any device but downloading it on my iPhone and trying to cast that to any smart TV that isn&rsquo;t appleTV equipped proves to be quite challenging.
+What&rsquo;s the solution? Opening my home server to the open internet, of course! Jellyfin has a user/password authentication system so I&rsquo;m not worried about strangers accessing my media library, since only I know my username and password, and I set it up to lock you out after 3 mistakes.
+Unfortunately this isn&rsquo;t as simple as typing my public IP address in my URL followed by the 8096 port, since my router just blocks any incoming connections.</p>
+<p>Back in my router settings, I head to my Internet tab and the Port Forwarding subtab. There I forward port 420 to port 8096 of my home server. And just like that, <code>xx.xx.xx.xx:420</code> shows me the login page!</p>
+<p>But this isn&rsquo;t enough for me, I don&rsquo;t want to have to memorize or have my IP written down, that&rsquo;s silly. I want an easy to remember URL that&rsquo;ll just work. I do some research and unfortunately, a typical DNS A register (used to forward a domain name to an IP) doesn&rsquo;t allow you to specify a port, which makes sense in hindsight.</p>
+<p>So my solution is to have to remember the port 420 and specify it, or route the connection through a server and forward to my home server. You&rsquo;ll never guess which I picked.</p>
+<p>I purchased a new domain name specifically for this and routed it to my existing server. On my server I use traefik instead of nginx as a reverse proxy because it&rsquo;s a much simpler configuration for me. Turns out traefik can do exactly what I need. Just add these lines to the command block in the compose:</p>
+<pre tabindex="0"><code>- --providers.docker=true
+- --providers.file.directory=/etc/traefik/dynamic
+</code></pre><p>And this one to the volumes:</p>
+<pre tabindex="0"><code>- ./dynamic:/etc/traefik/dynamic
+</code></pre><p>And finally, make the <code>dynamic</code> directory and inside it a new file <code>dynamic/jellyfin.yml</code>:</p>
+<pre tabindex="0"><code>http:
+  routers:
+    jellyfin:
+      rule: Host(`mydomain.example.com`)
+      entryPoints:
+        - websecure
+      service: jellyfin-svc
+      tls:
+        certResolver: myresolver
+
+  services:
+    jellyfin-svc:
+      loadBalancer:
+        servers:
+          - url: &#34;http://PUBLIC_IP:8096&#34;
+        passHostHeader: true
+</code></pre><p>Then just restart the docker compose</p>
+<pre tabindex="0"><code>docker compose up --build -d
+</code></pre><p>And suddenly I have access to my media library from anywhere and all I have to do is remember my domain, no port needed.</p>
+<h1 id="import-random">import random<a hidden class="anchor" aria-hidden="true" href="#import-random">#</a></h1>
+<p>There&rsquo;s this really cool project I saw on YouTube a few weeks ago called <a href="https://www.youtube.com/watch?v=15_-hgsX2V0">copyparty</a>, I highly encourage you to watch the video, it&rsquo;s truly phenomenal.
+I think adding something like this to my server in the future would be a really cool project, so I might have to do a part 2 to this.
+Or even something silly like a MInecraft server would be a cool project to experiment with. I doubt the little Optiplex could handle that but there&rsquo;s only really one way to find out.</p>
+<h1 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h1>
+<p>While I admit, the title is a bit misleading. There&rsquo;s a lot of truth to it, the point is that you can do a lot of cool things with a crappy old computer you can probably find on second hand markeplaces like Facebook Marketplace, craigslist, etc for $20. This is just my experience with using a machine like that to serve me. I now have the ability to watch my movies whenever I want, even on a plane if I remember to download them beforehand.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.nucieda.com/">Segmentation Fault</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

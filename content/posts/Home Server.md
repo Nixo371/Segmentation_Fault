@@ -1,7 +1,9 @@
 ---
 title: Your Home Server Should Be Free*
 date: 2025-08-17
-draft: true
+draft: false
+author: Nicolas Ucieda
+authorEmail: nicolas.ucieda@gmail.com
 ---
 I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I've always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.
 
@@ -43,6 +45,95 @@ Now comes the networking part, the most confusing part. I'm not going to explain
 
 Fortunately, there are ways to address this issue. The simplest and most straightforward way is through your router settings. In your browser you go to `192.168.0.1` (sometimes `192.168.1.1`) and your router's login page appears. Usually the credentials will be on your router somewhere, and if not, [here's](https://bcca.org/routers-default-passwords/) a list of some brand's defaults.
 
-Once you're in, you want to navigate to the LAN settings (sometimes it could be under DHCP). Each brand does their settings differently so you might have to dig around the settings to find it. I also recommend looking to see if the configuration has a basic/expert view, and switching to expert. Once in the DHCP settings you should see a setting something along the lines of "static IP/DHCP". If you're lucky, your router will allow you to click on a machine's hostname to select it. Otherwise you'll have to manually type in its MAC address. Then you just tell the router what IP address to reserve for that machine (obviously I picked `192.168.0.69`) and after a reset you'll notice that it'll always be assigned that local IP.
+Once you're in, you want to navigate to the LAN settings (sometimes it could be under DHCP). Each brand does their settings differently so you might have to dig around the settings to find it. I also recommend looking to see if the configuration has a basic/expert view, and switching to expert. Once in the DHCP settings you should see a setting something along the lines of "static IP/DHCP". If you're lucky, your router will allow you to click on a machine's host name to select it. Otherwise you'll have to manually type in its MAC address. Then you just tell the router what IP address to reserve for that machine (obviously I picked `192.168.0.69`) and after a reset you'll notice that it'll always be assigned that local IP.
 
-With that solved, I never have to worry about losing access to my server, eve if the power goes out, and it didn't cost me a penny.
+With that solved, I never have to worry about losing access to my server, even if the power goes out, and it didn't cost me a penny.
+
+# Samba
+I mentioned before that I wanted to have the drive accessible via the network, in case I wanted to add more files or download them later on. Samba makes this trivial by editing a single configuration file `/etc/samba.smb.conf`:
+```
+[Media]
+   path = /mnt/media
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = urmom
+```
+Yes seriously, that's it. `[Media]` is the name that you'll use on the network, so you can set that to anything you want. After that you set the password to access the drive:
+```
+sudo smbpasswd -a urmom
+```
+And then restart the daemon:
+```
+sudo systemctl restart smbd
+```
+And that's it!
+From my Windows PC all I had to do was right click in my file explorer, find the setting to add a network drive and add it by typing in:
+```
+\\192.168.0.69\Media
+```
+It prompted me for a username and password, which we just set. And once I authenticated myself I had full access to that drive!
+
+On my linux laptop it's as simple as specifying all those parameters in the mount command:
+```
+sudo mount -t cifs //192.168.0.69/Media /mnt/pc-media -o username=urmom
+```
+and specifying the password once prompted.
+
+This only works when I'm connected to my network, which isn't often, so I set it as an alias in my `~/.zshrc` so I can quickly connect to it whenever I need to
+
+# Home Network? More like World Network
+Well, now I want to be able to watch my movies whenever I'm not home, ideally on any device. Jellyfin allows me to download media to any device but downloading it on my iPhone and trying to cast that to any smart TV that isn't appleTV equipped proves to be quite challenging.
+What's the solution? Opening my home server to the open internet, of course! Jellyfin has a user/password authentication system so I'm not worried about strangers accessing my media library, since only I know my username and password, and I set it up to lock you out after 3 mistakes.
+Unfortunately this isn't as simple as typing my public IP address in my URL followed by the 8096 port, since my router just blocks any incoming connections.
+
+Back in my router settings, I head to my Internet tab and the Port Forwarding subtab. There I forward port 420 to port 8096 of my home server. And just like that, `xx.xx.xx.xx:420` shows me the login page!
+
+But this isn't enough for me, I don't want to have to memorize or have my IP written down, that's silly. I want an easy to remember URL that'll just work. I do some research and unfortunately, a typical DNS A register (used to forward a domain name to an IP) doesn't allow you to specify a port, which makes sense in hindsight.
+
+So my solution is to have to remember the port 420 and specify it, or route the connection through a server and forward to my home server. You'll never guess which I picked.
+
+I purchased a new domain name specifically for this and routed it to my existing server. On my server I use traefik instead of nginx as a reverse proxy because it's a much simpler configuration for me. Turns out traefik can do exactly what I need. Just add these lines to the command block in the compose:
+```
+- --providers.docker=true
+- --providers.file.directory=/etc/traefik/dynamic
+```
+And this one to the volumes:
+```
+- ./dynamic:/etc/traefik/dynamic
+```
+
+And finally, make the `dynamic` directory and inside it a new file `dynamic/jellyfin.yml`:
+```
+http:
+  routers:
+    jellyfin:
+      rule: Host(`mydomain.example.com`)
+      entryPoints:
+        - websecure
+      service: jellyfin-svc
+      tls:
+        certResolver: myresolver
+
+  services:
+    jellyfin-svc:
+      loadBalancer:
+        servers:
+          - url: "http://PUBLIC_IP:8096"
+        passHostHeader: true
+```
+
+Then just restart the docker compose
+```
+docker compose up --build -d
+```
+
+And suddenly I have access to my media library from anywhere and all I have to do is remember my domain, no port needed.
+
+# import random
+There's this really cool project I saw on YouTube a few weeks ago called [copyparty](https://www.youtube.com/watch?v=15_-hgsX2V0), I highly encourage you to watch the video, it's truly phenomenal.
+I think adding something like this to my server in the future would be a really cool project, so I might have to do a part 2 to this.
+Or even something silly like a MInecraft server would be a cool project to experiment with. I doubt the little Optiplex could handle that but there's only really one way to find out.
+
+# Conclusion
+While I admit, the title is a bit misleading. There's a lot of truth to it, the point is that you can do a lot of cool things with a crappy old computer you can probably find on second hand markeplaces like Facebook Marketplace, craigslist, etc for $20. This is just my experience with using a machine like that to serve me. I now have the ability to watch my movies whenever I want, even on a plane if I remember to download them beforehand.

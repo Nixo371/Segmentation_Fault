@@ -6,8 +6,17 @@
     <description>Recent content in Posts on Segmentation Fault</description>
     <generator>Hugo -- 0.148.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nucieda.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Your Home Server Should Be Free*</title>
+      <link>https://blog.nucieda.com/posts/home-server/</link>
+      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nucieda.com/posts/home-server/</guid>
+      <description>&lt;p&gt;I wanted to experiment with all the fancy and cool tools that are built for home servers. Media streaming, file systems, NAS-es, VPNs, etc. I&amp;rsquo;ve always been under the impression that I would need to buy equipment for that, and so always put it off, but recently I realized that might not be the case.&lt;/p&gt;
+&lt;h1 id=&#34;the-optiplex&#34;&gt;The Optiplex&lt;/h1&gt;
+&lt;p&gt;I got my hands on an old &lt;a href=&#34;https://www.hardware-corner.net/desktop-models/Dell-OptiPlex-3050M/&#34;&gt;Dell Optiplex 3050M&lt;/a&gt; for free from a family member, and after sitting on my desk for months I decided it would be at least worthwhile to see what I could do with it. It&amp;rsquo;s a tiny PC primarily meant for businesses, but silicon is silicon and can be sculpted to be whatever I desire it to be.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Why my sudoku solver sucks.</title>
       <link>https://blog.nucieda.com/posts/sudoku-solver/</link>
