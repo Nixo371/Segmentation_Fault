@@ -7,8 +7,9 @@ theme = 'PaperMod'
 	author = "Nicolas Ucieda"
 	email = "nicolas.ucieda@gmail.com"
 
-	ShowIconsInHeader = true
-	socialIcons = [
-		{ name = "email", url = "mailto:nicolas.ucieda@gmail.com" },
-		{ name = "github", url = "https://github.com/Nixo371" },
-	]
+	ShowReadingTime = true
+	ShowWordCount = true
+	ShowBreadCrumbs = true
+	ShowPostNavLinks = true
+	ShowCodeCopyButtons = true
+	ShowRssButtonInSectionTermList = true
