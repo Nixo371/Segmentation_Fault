@@ -8,7 +8,6 @@ theme = 'PaperMod'
 	email = "nicolas.ucieda@gmail.com"
 
 	ShowReadingTime = true
-	ShowWordCount = true
 	ShowBreadCrumbs = true
 	ShowPostNavLinks = true
 	ShowCodeCopyButtons = true
