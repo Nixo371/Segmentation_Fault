@@ -2,6 +2,7 @@
 title: Why I made an argument parser in C++
 date: 2025-03-16
 draft: true
+author: Nicolas Ucieda
 ---
 # The Inspiration
 I've been working on a command line chess game, with the idea that eventually you'll be able to run it from your command line without downloading anything (using curl) called chessCLI.
