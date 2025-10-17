@@ -1,5 +1,5 @@
 ---
 title: Title
-date: 2025-03-16
+date: {{date}}
 draft: true
 ---

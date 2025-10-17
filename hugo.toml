@@ -2,6 +2,7 @@ baseURL = 'https://blog.nucieda.com'
 languageCode = 'en-us'
 title = 'Segmentation Fault'
 theme = 'PaperMod'
+ignoreFiles = ["content/posts/Templates/*"]
 
 [params]
 	author = "Nicolas Ucieda"

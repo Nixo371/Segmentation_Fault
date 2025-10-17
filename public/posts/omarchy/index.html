@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>I switched to Omarchy; you should, too | Segmentation Fault</title>
+<meta name="keywords" content="">
+<meta name="description" content="Ever since I put Arch Linux on my laptop, I&rsquo;ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn&rsquo;t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about &ldquo;it&rsquo;s going to take forever to configure another Arch machine&rdquo;.
+Installation
+The installation itself was trivial, head to the Omarchy website, download the ISO, and load it on an external drive with Rufus, balenaEtcher, or my personal favorite, Ventoy
+Then in your computer&rsquo;s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy&rsquo;s installer won&rsquo;t let you install on a drive&rsquo;s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!">
+<meta name="author" content="Nicolas Ucieda">
+<link rel="canonical" href="https://blog.nucieda.com/posts/omarchy/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.nucieda.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.nucieda.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.nucieda.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.nucieda.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.nucieda.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.nucieda.com/posts/omarchy/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.nucieda.com/posts/omarchy/">
+  <meta property="og:site_name" content="Segmentation Fault">
+  <meta property="og:title" content="I switched to Omarchy; you should, too">
+  <meta property="og:description" content="Ever since I put Arch Linux on my laptop, I’ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn’t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about “it’s going to take forever to configure another Arch machine”.
+Installation The installation itself was trivial, head to the Omarchy website, download the ISO, and load it on an external drive with Rufus, balenaEtcher, or my personal favorite, Ventoy Then in your computer’s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy’s installer won’t let you install on a drive’s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-10-17T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="I switched to Omarchy; you should, too">
+<meta name="twitter:description" content="Ever since I put Arch Linux on my laptop, I&rsquo;ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn&rsquo;t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about &ldquo;it&rsquo;s going to take forever to configure another Arch machine&rdquo;.
+Installation
+The installation itself was trivial, head to the Omarchy website, download the ISO, and load it on an external drive with Rufus, balenaEtcher, or my personal favorite, Ventoy
+Then in your computer&rsquo;s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy&rsquo;s installer won&rsquo;t let you install on a drive&rsquo;s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.nucieda.com/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "I switched to Omarchy; you should, too",
+      "item": "https://blog.nucieda.com/posts/omarchy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "I switched to Omarchy; you should, too",
+  "name": "I switched to Omarchy; you should, too",
+  "description": "Ever since I put Arch Linux on my laptop, I\u0026rsquo;ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn\u0026rsquo;t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about \u0026ldquo;it\u0026rsquo;s going to take forever to configure another Arch machine\u0026rdquo;.\nInstallation The installation itself was trivial, head to the Omarchy website, download the ISO, and load it on an external drive with Rufus, balenaEtcher, or my personal favorite, Ventoy Then in your computer\u0026rsquo;s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy\u0026rsquo;s installer won\u0026rsquo;t let you install on a drive\u0026rsquo;s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Ever since I put Arch Linux on my laptop, I’ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn’t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about “it’s going to take forever to configure another Arch machine”.\nInstallation The installation itself was trivial, head to the Omarchy website, download the ISO, and load it on an external drive with Rufus, balenaEtcher, or my personal favorite, Ventoy Then in your computer’s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy’s installer won’t let you install on a drive’s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!\nAfter that it tells you to restart and remove the bootable media, and you’re in!\nBasic Configuration First things first, I don’t like SUPER being the Windows key, maybe it’s just that I’m used to ALT, but I much prefer it. Omarchy Menu -\u003e Setup -\u003e Input\n# ~/.config/hypr/input.conf kb_options = compose:caps, altwin:swap_alt_win Then, I don’t like the default SUPER + W to close a window, I prefer SUPER + W. I can change that in the Omarchy Menu -\u003e Setup -\u003e Keybindings:\n# ~/.config/hypr/bindings.conf unbind = SUPER, W bindd = SUPER, Q, Close active window, killactive Oh, and having to type nvim bothers me, so I added this alias to ~/.bashrc:\n# ~/.bashrc alias vim='nvim' VPN I use NordVPN so I want to get this going ASAP. Turns out it’s super simple. Install the package nordvpn-bin and then nordvpn-gui (technically optional but I want it). Adding myself to the nordvpn group with\nsudo usermod -aG nordvpn $USER And restarting After a restart, I enable the nordvpn service:\nsudo systemctl enable --now nordvpnd And now that that’s working, it’s time to log in. Unfortunately, the web login page doesn’t properly redirect back to the app, so we need to log in via the command line. Logging into NordVPN on the website, I can go to the NordVPN service, then scroll down to the access token, generate a new one, copy it, and then in the command line:\nnordvpn login --token And just like that, VPN is working!\nGames Luckily there has been a lot of work towards this in the past years so the process was painless. Omarchy makes it trivial to download Steam through their menu, and Proton is better than ever, meaning I don’t expect to run into any issues with any of the games I play\nMultiple Monitors I was delighted to see that without any configuration of my own, Omarchy automatically picked up both of my monitors and used them both properly. I did, however, need to modify the setup a bit. The relevant configuration file is ~/.config/hypr/monitors.conf The config was set automatically for any monitors, but I wanted more control about exactly what was happening and where. An easy way to detect your monitors is to run hyprctl monitors in the terminal. The important thing you need to know are the names, resolutions, and refresh rates. This was the output for me:\nMonitor HDMI-A-1 (ID 0): 1920x1080@60.00000 at 0x0 description: Acer Technologies EK271 H 73260BEFA3W01 make: Acer Technologies model: EK271 H physical size (mm): 600x330 serial: 73260BEFA3W01 active workspace: 11 (11) special workspace: 0 () reserved: 0 26 0 0 scale: 1.00 transform: 0 focused: no dpmsStatus: 1 vrr: false solitary: 0 solitaryBlockedBy: windowed mode,missing candidate activelyTearing: false tearingBlockedBy: next frame is not torn,user settings,missing candidate directScanoutTo: 0 directScanoutBlockedBy: user settings,missing candidate disabled: false currentFormat: XRGB8888 mirrorOf: none availableModes: 1920x1080@60.00Hz 1920x1080@100.00Hz 1920x1080@74.97Hz 1920x1080@59.94Hz 1920x1080@50.00Hz 1680x1050@59.95Hz 1280x1024@75.03Hz 1280x1024@60.02Hz 1440x900@59.89Hz 1280x960@60.00Hz 1280x800@59.81Hz 1152x864@75.00Hz 1280x720@60.00Hz 1280x720@59.94Hz 1280x720@50.00Hz 1024x768@75.03Hz 1024x768@70.07Hz 1024x768@60.00Hz 800x600@75.00Hz 800x600@72.19Hz 800x600@60.32Hz 800x600@56.25Hz 720x576@50.00Hz 720x480@59.94Hz 640x480@75.00Hz 640x480@72.81Hz 640x480@59.94Hz 640x480@59.93Hz Monitor DP-2 (ID 1): 2560x1440@144.00000 at 1920x0 description: LG Electronics LG QHD 0x0000AC28 make: LG Electronics model: LG QHD physical size (mm): 700x390 serial: 0x0000AC28 active workspace: 1 (1) special workspace: 0 () reserved: 0 26 0 0 scale: 1.00 transform: 0 focused: yes dpmsStatus: 1 vrr: false solitary: 0 solitaryBlockedBy: windowed mode,missing candidate activelyTearing: false tearingBlockedBy: next frame is not torn,user settings,missing candidate directScanoutTo: 0 directScanoutBlockedBy: user settings,missing candidate disabled: false currentFormat: XRGB8888 mirrorOf: none availableModes: 2560x1440@144.00Hz 2560x1440@120.00Hz 2560x1440@74.97Hz 2560x1440@59.95Hz 1920x1080@74.91Hz 1920x1080@60.00Hz 1680x1050@59.95Hz 1600x900@60.00Hz 1280x1024@75.03Hz 1280x1024@60.02Hz 1280x800@59.81Hz 1152x864@59.96Hz 1280x720@60.00Hz 1024x768@75.03Hz 1024x768@60.00Hz 800x600@75.00Hz 800x600@60.32Hz 640x480@75.00Hz 640x480@59.94Hz And the relevant bits of information:\nHDMI-A-1 Resolution: 1920x1080 Refresh Rate: 60Hz (in availableModes you can see it can go up to 100Hz but as my secondary monitor I left it as is) DP-2 Resolution: 2560x1440 Refresh Rate: 144Hz Once gathered I can modify the line in my monitor config file:\n# ~/.config/hypr/monitors.conf monitor=,preferred,auto,auto to\n# ~/.config/hypr/monitors.conf monitor=HDMI-A-1,1920x1080@60,0x0,1 monitor=DP-2,2560x1440@144,1920x0,1 Note the second monitor has 1920x0, this is the “absolute” position in space. This is to ensure that Hyprland knows that HDMI-A-1 is to the left of DP-2, exactly 1920 pixels to the right and 0 pixels down.\nNetworking There’s one (“one”) thing I dislike about Omarchy. It uses iwd as its networking software instead of NetworkManager. I was unable to connect to eduroam with the system in place, so I switched to NetworkManager using this comment from an Issue in the Omarchy Github. The only thing I had to change is to not run the systemctl mask --now wpa_supplicant.service command, as for some reason that broke all networking on my laptop. Once that was done, I just use nmtui for connecting to new networks and imported my old eduroam.nmconnection file and it worked perfectly. I wish it came with NetworkManager by default, but at least it’s simple enough to change. I’ve noticed the waybar icon still shows network details, which seems to imply that it knows of the connection and its speed, but I haven’t tried using the app to connect to any networks, YMMV.\nWorkspaces In Omarchy the default workspace configuration is perfectly fine, but I wanted more rigid control of where my workspaces were, since none were bound to any particular monitors. I created 20 workspaces, 10 bound to each monitor, and since there’s no “workspace” configuration file, I made my own and added this line to the base hyprland configuration file:\n# ~/.config/hypr/hyprland.conf source = ~/.config/hypr/workspaces.conf # ~/.config/hypr/workspaces.conf # Workspaces 1–10 → DP-2 (right) workspace=1,monitor:DP-2 workspace=2,monitor:DP-2 workspace=3,monitor:DP-2 workspace=4,monitor:DP-2 workspace=5,monitor:DP-2 workspace=6,monitor:DP-2 workspace=7,monitor:DP-2 workspace=8,monitor:DP-2 workspace=9,monitor:DP-2 workspace=10,monitor:DP-2 # Workspaces 11–20 → HDMI-A-1 (left) workspace=11,monitor:HDMI-A-1 workspace=12,monitor:HDMI-A-1 workspace=13,monitor:HDMI-A-1 workspace=14,monitor:HDMI-A-1 workspace=15,monitor:HDMI-A-1 workspace=16,monitor:HDMI-A-1 workspace=17,monitor:HDMI-A-1 workspace=18,monitor:HDMI-A-1 workspace=19,monitor:HDMI-A-1 workspace=20,monitor:HDMI-A-1 And then I rebound the keybindings to allow me to use them as I’m most comfortable with:\n# ~/.config/hypr/bindings.conf # Workspaces # Unbind unbind = SUPER, code:10 unbind = SUPER, code:11 unbind = SUPER, code:12 unbind = SUPER, code:13 unbind = SUPER, code:14 unbind = SUPER, code:15 unbind = SUPER, code:16 unbind = SUPER, code:17 unbind = SUPER, code:18 unbind = SUPER, code:19 unbind = SUPER SHIFT, code:10 unbind = SUPER SHIFT, code:11 unbind = SUPER SHIFT, code:12 unbind = SUPER SHIFT, code:13 unbind = SUPER SHIFT, code:14 unbind = SUPER SHIFT, code:15 unbind = SUPER SHIFT, code:16 unbind = SUPER SHIFT, code:17 unbind = SUPER SHIFT, code:18 unbind = SUPER SHIFT, code:19 # Bind # Main Monitor bindd = SUPER, code:10, Switch to workspace 1, workspace, 1 bindd = SUPER, code:11, Switch to workspace 2, workspace, 2 bindd = SUPER, code:12, Switch to workspace 3, workspace, 3 bindd = SUPER, code:13, Switch to workspace 4, workspace, 4 bindd = SUPER, code:14, Switch to workspace 5, workspace, 5 bindd = SUPER, code:15, Switch to workspace 6, workspace, 6 bindd = SUPER, code:16, Switch to workspace 7, workspace, 7 bindd = SUPER, code:17, Switch to workspace 8, workspace, 8 bindd = SUPER, code:18, Switch to workspace 9, workspace, 9 bindd = SUPER, code:19, Switch to workspace 10, workspace, 10 bindd = SUPER SHIFT, code:10, Move window to workspace 1, movetoworkspace, 1 bindd = SUPER SHIFT, code:11, Move window to workspace 2, movetoworkspace, 2 bindd = SUPER SHIFT, code:12, Move window to workspace 3, movetoworkspace, 3 bindd = SUPER SHIFT, code:13, Move window to workspace 4, movetoworkspace, 4 bindd = SUPER SHIFT, code:14, Move window to workspace 5, movetoworkspace, 5 bindd = SUPER SHIFT, code:15, Move window to workspace 6, movetoworkspace, 6 bindd = SUPER SHIFT, code:16, Move window to workspace 7, movetoworkspace, 7 bindd = SUPER SHIFT, code:17, Move window to workspace 8, movetoworkspace, 8 bindd = SUPER SHIFT, code:18, Move window to workspace 9, movetoworkspace, 9 bindd = SUPER SHIFT, code:19, Move window to workspace 10, movetoworkspace, 10 # Secondary Monitor bindd = SUPER CTRL, code:10, Switch to workspace 11, workspace, 11 bindd = SUPER CTRL, code:11, Switch to workspace 12, workspace, 12 bindd = SUPER CTRL, code:12, Switch to workspace 13, workspace, 13 bindd = SUPER CTRL, code:13, Switch to workspace 14, workspace, 14 bindd = SUPER CTRL, code:14, Switch to workspace 15, workspace, 15 bindd = SUPER CTRL, code:15, Switch to workspace 16, workspace, 16 bindd = SUPER CTRL, code:16, Switch to workspace 17, workspace, 17 bindd = SUPER CTRL, code:17, Switch to workspace 18, workspace, 18 bindd = SUPER CTRL, code:18, Switch to workspace 19, workspace, 19 bindd = SUPER CTRL, code:19, Switch to workspace 20, workspace, 20 bindd = SUPER SHIFT CTRL, code:10, Move window to workspace 11, movetoworkspace, 11 bindd = SUPER SHIFT CTRL, code:11, Move window to workspace 12, movetoworkspace, 12 bindd = SUPER SHIFT CTRL, code:12, Move window to workspace 13, movetoworkspace, 13 bindd = SUPER SHIFT CTRL, code:13, Move window to workspace 14, movetoworkspace, 14 bindd = SUPER SHIFT CTRL, code:14, Move window to workspace 15, movetoworkspace, 15 bindd = SUPER SHIFT CTRL, code:15, Move window to workspace 16, movetoworkspace, 16 bindd = SUPER SHIFT CTRL, code:16, Move window to workspace 17, movetoworkspace, 17 bindd = SUPER SHIFT CTRL, code:17, Move window to workspace 18, movetoworkspace, 18 bindd = SUPER SHIFT CTRL, code:18, Move window to workspace 19, movetoworkspace, 19 bindd = SUPER SHIFT CTRL, code:19, Move window to workspace 20, movetoworkspace, 20 This to me is much more comfortable, I know exactly how to go to any workspace at any time from anywhere, no relative arrows or vim motions. Absolute precision. And finally I had to modify how the waybar showed the workspaces. As far as I know, you can’t have one instance of waybar running 2 separate bars for 2 separate monitors, and I don’t want to have all 20 workspaces on my waybar. Ideally I’d be able to see each monitor’s workspaces in each monitor. But since I don’t care enough to actually handle 2 separate waybars, I just have the waybar on my secondary monitor not show any workspace labels.\n# ~/.config/waybar/config.jsonc \"hyprland/workspaces\": { \"monitor\": \"DP-2\", \"on-click\": \"activate\", \"format\": \"{icon}\", \"format-icons\": { \"default\": \"\", \"1\": \"1\", \"2\": \"2\", \"3\": \"3\", \"4\": \"4\", \"5\": \"5\", \"6\": \"6\", \"7\": \"7\", \"8\": \"8\", \"9\": \"9\", \"10\": \"10\", \"active\": \"󱓻\" } }, Importantly, I set it only to show these labels on my primary monitor (DP-2), and I removed persistent-workspaces, since it’s ridiculous to see empty workspaces.\nWindow Rules Here’s where I set rules for windows, I always want certain apps on certain workspaces, so I can set up some window rules to configure that, along with some other tweaks. In a new file (like with the workspaces):\n# ~/.config/hypr/windowrules.conf windowrule=workspace 2, class:zen windowrule=workspace 5, class:obsidian windowrule=workspace 6, class:steam windowrule=workspace 11, class:vesktop windowrule=tile, class:steam Here I define where I want these apps to open, and since Steam decided to be a bit annoying and not tile by default, I configure it to. If you want to do this for your own apps, you can open it and in any terminal run hyprctl clients, find your window, and copy the class name.\nApplication Launcher In Omarchy, pressing SUPER + Space brings up the Application Launcher, where you can fuzzy find apps/web apps and other things and run them. A lot of the apps shown there are apps I’m never going to use (ChatGPT, Grok, X, Zoom, etc) and so I don’t want them to even show up. Luckily this menu uses walker which pulls the relevant information from .desktop files in ~/.local/share/applications and /usr/share/applications. It’s as simple as either deleting the relevant ones or renaming them to something like X.desktop.disabled so walker won’t pick them up anymore. On a side note, I now know how and where to change/set an icon or make a new app or custom program I can run, and might do so in the future.\nMovement Keybindings Omarchy by default uses SUPER + to navigate between windows, but I’m much more comfortable with vim keybinds, and moving to the arrow keys is something I like to avoid if I can. So I’m going to change that by adding this to my bindings.conf Omarchy Menu -\u003e Setup -\u003e Keybindings\n# ~/.config/hypr/bindings.conf # Rebind some keybinds to allow for vim motions for window navigation unbind = SUPER, K unbind = SUPER, J bindd = SUPER CTRL, K, Show key bindings, exec, omarchy-menu-keybindings bindd = SUPER CTRL, J, Toggle split, togglesplit # Vim Motions for window navigation unbind = SUPER, left unbind = SUPER, right unbind = SUPER, up unbind = SUPER, down bindd = SUPER, H, Move focus left, movefocus, l bindd = SUPER, L, Move focus right, movefocus, r bindd = SUPER, K, Move focus up, movefocus, u bindd = SUPER, J, Move focus down, movefocus, d unbind = SUPER SHIFT, left unbind = SUPER SHIFT, right unbind = SUPER SHIFT, up unbind = SUPER SHIFT, down bindd = SUPER SHIFT, H, Swap window to the left, swapwindow, l bindd = SUPER SHIFT, L, Swap window to the right, swapwindow, r bindd = SUPER SHIFT, K, Swap window up, swapwindow, u bindd = SUPER SHIFT, J, Swap window down, swapwindow, d Themes I don’t mind the default themes on Omarchy. My favorite is Catpuccin, but there was one on the Omarchy Extra Theme Browser that I really liked. Void. Luckily Omarchy makes it super simple to install and use themes, so under the Omarchy Menu you can navigate to Install -\u003e Style -\u003e Theme and paste in the GitHub link, and it just works.\nNeoVim Another extremely simple task, but one I had to do regardless. Omarchy comes packaged with a pretty good LazyVim configuration for NeoVim; but I’m used to mine, and don’t like some of the “extra fancy” things it adds. I renamed ~/.config/nvim to ~/.config/nvim-omarchy and then cloned my own nvim config from GitHub. If you want it\nSSH I have a few things that depend on SSH keys. Most importantly, GitHub and my home media server. Both of these are simple to set up again, but GitHub is the easiest. Make a new SSH key with ssh-keygen (I make one for each thing), save it in the default location and set a passkey. I can’t stress this enough, I know it’s your computer, but get in the habit of giving your SSH keys a passkey, I’ve seen interns use company laptops with their personal ssh keys, and when they leave, don’t remove the ssh keys. You can use ssh-agent, but use a passkey. Anyways, once that’s done I log into GitHub, remove the old ones, add the new one, and that’s done. The media server one is slightly more tricky. I ssh into the server with my laptop, whose ssh key is registered. From inside I modify the ssh config file:\n# /etc/ssh/sshd_config PasswordAuthentication yes Now I’m able to ssh into my media server with my password, ssh-copy-idmy new ssh key over, delete the old key by finding the old hostname in ~/.ssh/authorized_keys and deleting the line in the file. Once that’s done, I re-disable password authentication as I enabled it above, and I’m done!\nMisc Along with all the above, I downloaded Thunderbird as a mail client, Dolphin as my file explorer (I’ve heard great things), and Vesktop instead of Discord. From the time I’ve had Omarchy everything has just felt effortless, and it might be the first time where I can genuinely recommend an OS like Omarchy to anyone interested in starting with Linux. Ubuntu and Linux Mint will always be the OG “beginner” distributions, but Omarchy definitely throws its hat in the ring.\n",
+  "wordCount" : "2710",
+  "inLanguage": "en",
+  "datePublished": "2025-10-17T00:00:00Z",
+  "dateModified": "2025-10-17T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Nicolas Ucieda"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.nucieda.com/posts/omarchy/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Segmentation Fault",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.nucieda.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.nucieda.com/" accesskey="h" title="Segmentation Fault (Alt + H)">Segmentation Fault</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.nucieda.com/">Home</a>&nbsp;»&nbsp;<a href="https://blog.nucieda.com/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      I switched to Omarchy; you should, too
+    </h1>
+    <div class="post-meta"><span title='2025-10-17 00:00:00 +0000 UTC'>October 17, 2025</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;Nicolas Ucieda
+
+</div>
+  </header> 
+  <div class="post-content"><p>Ever since I put Arch Linux on my laptop, I&rsquo;ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn&rsquo;t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about &ldquo;it&rsquo;s going to take forever to configure another Arch machine&rdquo;.</p>
+<h2 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h2>
+<p>The installation itself was trivial, head to the <a href="https://omarchy.org/">Omarchy website</a>, download the ISO, and load it on an external drive with <a href="https://rufus.ie/en/">Rufus</a>, <a href="https://etcher.balena.io/">balenaEtcher</a>, or my personal favorite, <a href="https://www.ventoy.net/en/index.html">Ventoy</a>
+Then in your computer&rsquo;s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy&rsquo;s installer won&rsquo;t let you install on a drive&rsquo;s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!</p>
+<p>After that it tells you to restart and remove the bootable media, and you&rsquo;re in!</p>
+<h2 id="basic-configuration">Basic Configuration<a hidden class="anchor" aria-hidden="true" href="#basic-configuration">#</a></h2>
+<p>First things first, I don&rsquo;t like SUPER being the Windows key, maybe it&rsquo;s just that I&rsquo;m used to ALT, but I much prefer it.
+Omarchy Menu -&gt; Setup -&gt; Input</p>
+<pre tabindex="0"><code># ~/.config/hypr/input.conf
+
+kb_options = compose:caps, altwin:swap_alt_win
+</code></pre><p>Then, I don&rsquo;t like the default <code>SUPER + W</code> to close a window, I prefer <code>SUPER + W</code>. I can change that in the Omarchy Menu -&gt; Setup -&gt; Keybindings:</p>
+<pre tabindex="0"><code># ~/.config/hypr/bindings.conf
+
+unbind = SUPER, W
+bindd = SUPER, Q, Close active window, killactive
+</code></pre><p>Oh, and having to type <code>nvim</code> bothers me, so I added this alias to <code>~/.bashrc</code>:</p>
+<pre tabindex="0"><code># ~/.bashrc
+
+alias vim=&#39;nvim&#39;
+</code></pre><h2 id="vpn">VPN<a hidden class="anchor" aria-hidden="true" href="#vpn">#</a></h2>
+<p>I use NordVPN so I want to get this going ASAP. Turns out it&rsquo;s super simple. Install the package <code>nordvpn-bin</code> and then <code>nordvpn-gui</code> (technically optional but I want it).
+Adding myself to the <code>nordvpn</code> group with</p>
+<pre tabindex="0"><code>sudo usermod -aG nordvpn $USER
+</code></pre><p>And restarting
+After a restart, I enable the nordvpn service:</p>
+<pre tabindex="0"><code>sudo systemctl enable --now nordvpnd
+</code></pre><p>And now that that&rsquo;s working, it&rsquo;s time to log in. Unfortunately, the web login page doesn&rsquo;t properly redirect back to the app, so we need to log in via the command line. Logging into NordVPN on the website, I can go to the NordVPN service, then scroll down to the access token, generate a new one, copy it, and then in the command line:</p>
+<pre tabindex="0"><code>nordvpn login --token &lt;token&gt;
+</code></pre><p>And just like that, VPN is working!</p>
+<h2 id="games">Games<a hidden class="anchor" aria-hidden="true" href="#games">#</a></h2>
+<p>Luckily there has been a lot of work towards this in the past years so the process was painless. Omarchy makes it trivial to download Steam through their menu, and Proton is better than ever, meaning I don&rsquo;t expect to run into any issues with any of the games I play</p>
+<h2 id="multiple-monitors">Multiple Monitors<a hidden class="anchor" aria-hidden="true" href="#multiple-monitors">#</a></h2>
+<p>I was delighted to see that without any configuration of my own, Omarchy automatically picked up both of my monitors and used them both properly. I did, however, need to modify the setup a bit.
+The relevant configuration file is <code>~/.config/hypr/monitors.conf</code>
+The config was set automatically for any monitors, but I wanted more control about exactly what was happening and where.
+An easy way to detect your monitors is to run <code>hyprctl monitors</code> in the terminal. The important thing you need to know are the names, resolutions, and refresh rates. This was the output for me:</p>
+<pre tabindex="0"><code>Monitor HDMI-A-1 (ID 0):
+	1920x1080@60.00000 at 0x0
+	description: Acer Technologies EK271 H 73260BEFA3W01
+	make: Acer Technologies
+	model: EK271 H
+	physical size (mm): 600x330
+	serial: 73260BEFA3W01
+	active workspace: 11 (11)
+	special workspace: 0 ()
+	reserved: 0 26 0 0
+	scale: 1.00
+	transform: 0
+	focused: no
+	dpmsStatus: 1
+	vrr: false
+	solitary: 0
+	solitaryBlockedBy: windowed mode,missing candidate
+	activelyTearing: false
+	tearingBlockedBy: next frame is not torn,user settings,missing candidate
+	directScanoutTo: 0
+	directScanoutBlockedBy: user settings,missing candidate
+	disabled: false
+	currentFormat: XRGB8888
+	mirrorOf: none
+	availableModes: 1920x1080@60.00Hz 1920x1080@100.00Hz 1920x1080@74.97Hz 1920x1080@59.94Hz 1920x1080@50.00Hz 1680x1050@59.95Hz 1280x1024@75.03Hz 1280x1024@60.02Hz 1440x900@59.89Hz 1280x960@60.00Hz 1280x800@59.81Hz 1152x864@75.00Hz 1280x720@60.00Hz 1280x720@59.94Hz 1280x720@50.00Hz 1024x768@75.03Hz 1024x768@70.07Hz 1024x768@60.00Hz 800x600@75.00Hz 800x600@72.19Hz 800x600@60.32Hz 800x600@56.25Hz 720x576@50.00Hz 720x480@59.94Hz 640x480@75.00Hz 640x480@72.81Hz 640x480@59.94Hz 640x480@59.93Hz
+
+Monitor DP-2 (ID 1):
+	2560x1440@144.00000 at 1920x0
+	description: LG Electronics LG QHD 0x0000AC28
+	make: LG Electronics
+	model: LG QHD
+	physical size (mm): 700x390
+	serial: 0x0000AC28
+	active workspace: 1 (1)
+	special workspace: 0 ()
+	reserved: 0 26 0 0
+	scale: 1.00
+	transform: 0
+	focused: yes
+	dpmsStatus: 1
+	vrr: false
+	solitary: 0
+	solitaryBlockedBy: windowed mode,missing candidate
+	activelyTearing: false
+	tearingBlockedBy: next frame is not torn,user settings,missing candidate
+	directScanoutTo: 0
+	directScanoutBlockedBy: user settings,missing candidate
+	disabled: false
+	currentFormat: XRGB8888
+	mirrorOf: none
+	availableModes: 2560x1440@144.00Hz 2560x1440@120.00Hz 2560x1440@74.97Hz 2560x1440@59.95Hz 1920x1080@74.91Hz 1920x1080@60.00Hz 1680x1050@59.95Hz 1600x900@60.00Hz 1280x1024@75.03Hz 1280x1024@60.02Hz 1280x800@59.81Hz 1152x864@59.96Hz 1280x720@60.00Hz 1024x768@75.03Hz 1024x768@60.00Hz 800x600@75.00Hz 800x600@60.32Hz 640x480@75.00Hz 640x480@59.94Hz
+</code></pre><p>And the relevant bits of information:</p>
+<pre tabindex="0"><code>HDMI-A-1
+	Resolution: 1920x1080
+	Refresh Rate: 60Hz (in availableModes you can see it can go up to 100Hz but as my secondary monitor I left it as is)
+
+DP-2
+	Resolution: 2560x1440
+	Refresh Rate: 144Hz
+</code></pre><p>Once gathered I can modify the line in my monitor config file:</p>
+<pre tabindex="0"><code># ~/.config/hypr/monitors.conf
+
+monitor=,preferred,auto,auto
+</code></pre><p>to</p>
+<pre tabindex="0"><code># ~/.config/hypr/monitors.conf
+
+monitor=HDMI-A-1,1920x1080@60,0x0,1
+monitor=DP-2,2560x1440@144,1920x0,1
+</code></pre><p>Note the second monitor has <code>1920x0</code>, this is the &ldquo;absolute&rdquo; position in space. This is to ensure that Hyprland knows that HDMI-A-1 is to the left of DP-2, exactly 1920 pixels to the right and 0 pixels down.</p>
+<h2 id="networking">Networking<a hidden class="anchor" aria-hidden="true" href="#networking">#</a></h2>
+<p>There&rsquo;s one (&ldquo;one&rdquo;) thing I dislike about Omarchy. It uses <code>iwd</code> as its networking software instead of <code>NetworkManager</code>. I was unable to connect to <code>eduroam</code> with the system in place, so I switched to NetworkManager using <a href="https://github.com/basecamp/omarchy/issues/1414#issuecomment-3262272669">this comment</a> from an Issue in the Omarchy Github. The only thing I had to change is to not run the <code>systemctl mask --now wpa_supplicant.service</code> command, as for some reason that broke all networking on my laptop. Once that was done, I just use <code>nmtui</code> for connecting to new networks and imported my old <code>eduroam.nmconnection</code> file and it worked perfectly. I wish it came with NetworkManager by default, but at least it&rsquo;s simple enough to change.
+I&rsquo;ve noticed the waybar icon still shows network details, which seems to imply that it knows of the connection and its speed, but I haven&rsquo;t tried using the app to connect to any networks, YMMV.</p>
+<h2 id="workspaces">Workspaces<a hidden class="anchor" aria-hidden="true" href="#workspaces">#</a></h2>
+<p>In Omarchy the default workspace configuration is perfectly fine, but I wanted more rigid control of where my workspaces were, since none were bound to any particular monitors.
+I created 20 workspaces, 10 bound to each monitor, and since there&rsquo;s no &ldquo;workspace&rdquo; configuration file, I made my own and added this line to the base hyprland configuration file:</p>
+<pre tabindex="0"><code># ~/.config/hypr/hyprland.conf
+
+source = ~/.config/hypr/workspaces.conf
+</code></pre><pre tabindex="0"><code># ~/.config/hypr/workspaces.conf
+
+# Workspaces 1–10 → DP-2 (right)
+workspace=1,monitor:DP-2
+workspace=2,monitor:DP-2
+workspace=3,monitor:DP-2
+workspace=4,monitor:DP-2
+workspace=5,monitor:DP-2
+workspace=6,monitor:DP-2
+workspace=7,monitor:DP-2
+workspace=8,monitor:DP-2
+workspace=9,monitor:DP-2
+workspace=10,monitor:DP-2
+
+# Workspaces 11–20 → HDMI-A-1 (left)
+workspace=11,monitor:HDMI-A-1
+workspace=12,monitor:HDMI-A-1
+workspace=13,monitor:HDMI-A-1
+workspace=14,monitor:HDMI-A-1
+workspace=15,monitor:HDMI-A-1
+workspace=16,monitor:HDMI-A-1
+workspace=17,monitor:HDMI-A-1
+workspace=18,monitor:HDMI-A-1
+workspace=19,monitor:HDMI-A-1
+workspace=20,monitor:HDMI-A-1
+</code></pre><p>And then I rebound the keybindings to allow me to use them as I&rsquo;m most comfortable with:</p>
+<pre tabindex="0"><code># ~/.config/hypr/bindings.conf
+
+# Workspaces
+# Unbind
+unbind = SUPER, code:10
+unbind = SUPER, code:11
+unbind = SUPER, code:12
+unbind = SUPER, code:13
+unbind = SUPER, code:14
+unbind = SUPER, code:15
+unbind = SUPER, code:16
+unbind = SUPER, code:17
+unbind = SUPER, code:18
+unbind = SUPER, code:19
+unbind = SUPER SHIFT, code:10
+unbind = SUPER SHIFT, code:11
+unbind = SUPER SHIFT, code:12
+unbind = SUPER SHIFT, code:13
+unbind = SUPER SHIFT, code:14
+unbind = SUPER SHIFT, code:15
+unbind = SUPER SHIFT, code:16
+unbind = SUPER SHIFT, code:17
+unbind = SUPER SHIFT, code:18
+unbind = SUPER SHIFT, code:19
+
+# Bind
+# Main Monitor
+bindd = SUPER, code:10, Switch to workspace 1, workspace, 1
+bindd = SUPER, code:11, Switch to workspace 2, workspace, 2
+bindd = SUPER, code:12, Switch to workspace 3, workspace, 3
+bindd = SUPER, code:13, Switch to workspace 4, workspace, 4
+bindd = SUPER, code:14, Switch to workspace 5, workspace, 5
+bindd = SUPER, code:15, Switch to workspace 6, workspace, 6
+bindd = SUPER, code:16, Switch to workspace 7, workspace, 7
+bindd = SUPER, code:17, Switch to workspace 8, workspace, 8
+bindd = SUPER, code:18, Switch to workspace 9, workspace, 9
+bindd = SUPER, code:19, Switch to workspace 10, workspace, 10
+bindd = SUPER SHIFT, code:10, Move window to workspace 1, movetoworkspace, 1
+bindd = SUPER SHIFT, code:11, Move window to workspace 2, movetoworkspace, 2
+bindd = SUPER SHIFT, code:12, Move window to workspace 3, movetoworkspace, 3
+bindd = SUPER SHIFT, code:13, Move window to workspace 4, movetoworkspace, 4
+bindd = SUPER SHIFT, code:14, Move window to workspace 5, movetoworkspace, 5
+bindd = SUPER SHIFT, code:15, Move window to workspace 6, movetoworkspace, 6
+bindd = SUPER SHIFT, code:16, Move window to workspace 7, movetoworkspace, 7
+bindd = SUPER SHIFT, code:17, Move window to workspace 8, movetoworkspace, 8
+bindd = SUPER SHIFT, code:18, Move window to workspace 9, movetoworkspace, 9
+bindd = SUPER SHIFT, code:19, Move window to workspace 10, movetoworkspace, 10
+# Secondary Monitor
+bindd = SUPER CTRL, code:10, Switch to workspace 11, workspace, 11
+bindd = SUPER CTRL, code:11, Switch to workspace 12, workspace, 12
+bindd = SUPER CTRL, code:12, Switch to workspace 13, workspace, 13
+bindd = SUPER CTRL, code:13, Switch to workspace 14, workspace, 14
+bindd = SUPER CTRL, code:14, Switch to workspace 15, workspace, 15
+bindd = SUPER CTRL, code:15, Switch to workspace 16, workspace, 16
+bindd = SUPER CTRL, code:16, Switch to workspace 17, workspace, 17
+bindd = SUPER CTRL, code:17, Switch to workspace 18, workspace, 18
+bindd = SUPER CTRL, code:18, Switch to workspace 19, workspace, 19
+bindd = SUPER CTRL, code:19, Switch to workspace 20, workspace, 20
+bindd = SUPER SHIFT CTRL, code:10, Move window to workspace 11, movetoworkspace, 11
+bindd = SUPER SHIFT CTRL, code:11, Move window to workspace 12, movetoworkspace, 12
+bindd = SUPER SHIFT CTRL, code:12, Move window to workspace 13, movetoworkspace, 13
+bindd = SUPER SHIFT CTRL, code:13, Move window to workspace 14, movetoworkspace, 14
+bindd = SUPER SHIFT CTRL, code:14, Move window to workspace 15, movetoworkspace, 15
+bindd = SUPER SHIFT CTRL, code:15, Move window to workspace 16, movetoworkspace, 16
+bindd = SUPER SHIFT CTRL, code:16, Move window to workspace 17, movetoworkspace, 17
+bindd = SUPER SHIFT CTRL, code:17, Move window to workspace 18, movetoworkspace, 18
+bindd = SUPER SHIFT CTRL, code:18, Move window to workspace 19, movetoworkspace, 19
+bindd = SUPER SHIFT CTRL, code:19, Move window to workspace 20, movetoworkspace, 20
+</code></pre><p>This to me is much more comfortable, I know exactly how to go to any workspace at any time from anywhere, no relative arrows or vim motions. Absolute precision.
+And finally I had to modify how the waybar showed the workspaces. As far as I know, you can&rsquo;t have one instance of waybar running 2 separate bars for 2 separate monitors, and I don&rsquo;t want to have all 20 workspaces on my waybar. Ideally I&rsquo;d be able to see each monitor&rsquo;s workspaces in each monitor. But since I don&rsquo;t care enough to actually handle 2 separate waybars, I just have the waybar on my secondary monitor not show any workspace labels.</p>
+<pre tabindex="0"><code># ~/.config/waybar/config.jsonc
+
+&#34;hyprland/workspaces&#34;: {
+    &#34;monitor&#34;: &#34;DP-2&#34;,
+    &#34;on-click&#34;: &#34;activate&#34;,
+    &#34;format&#34;: &#34;{icon}&#34;,
+    &#34;format-icons&#34;: {
+      &#34;default&#34;: &#34;&#34;,
+      &#34;1&#34;: &#34;1&#34;,
+      &#34;2&#34;: &#34;2&#34;,
+      &#34;3&#34;: &#34;3&#34;,
+      &#34;4&#34;: &#34;4&#34;,
+      &#34;5&#34;: &#34;5&#34;,
+      &#34;6&#34;: &#34;6&#34;,
+      &#34;7&#34;: &#34;7&#34;,
+      &#34;8&#34;: &#34;8&#34;,
+      &#34;9&#34;: &#34;9&#34;,
+      &#34;10&#34;: &#34;10&#34;,
+      &#34;active&#34;: &#34;󱓻&#34;
+    }
+  },
+</code></pre><p>Importantly, I set it only to show these labels on my primary monitor (DP-2), and I removed <code>persistent-workspaces</code>, since it&rsquo;s ridiculous to see empty workspaces.</p>
+<h2 id="window-rules">Window Rules<a hidden class="anchor" aria-hidden="true" href="#window-rules">#</a></h2>
+<p>Here&rsquo;s where I set rules for windows, I always want certain apps on certain workspaces, so I can set up some window rules to configure that, along with some other tweaks.
+In a new file (like with the workspaces):</p>
+<pre tabindex="0"><code># ~/.config/hypr/windowrules.conf
+
+windowrule=workspace 2, class:zen
+windowrule=workspace 5, class:obsidian
+windowrule=workspace 6, class:steam
+windowrule=workspace 11, class:vesktop
+
+windowrule=tile, class:steam
+</code></pre><p>Here I define where I want these apps to open, and since Steam decided to be a bit annoying and not tile by default, I configure it to.
+If you want to do this for your own apps, you can open it and in any terminal run <code>hyprctl clients</code>, find your window, and copy the class name.</p>
+<h2 id="application-launcher">Application Launcher<a hidden class="anchor" aria-hidden="true" href="#application-launcher">#</a></h2>
+<p>In Omarchy, pressing <code>SUPER + Space</code> brings up the Application Launcher, where you can fuzzy find apps/web apps and other things and run them. A lot of the apps shown there are apps I&rsquo;m never going to use (ChatGPT, Grok, X, Zoom, etc) and so I don&rsquo;t want them to even show up.
+Luckily this menu uses <code>walker</code> which pulls the relevant information from <code>.desktop</code> files in <code>~/.local/share/applications</code> and <code>/usr/share/applications</code>. It&rsquo;s as simple as either deleting the relevant ones or renaming them to something like <code>X.desktop.disabled</code> so <code>walker</code> won&rsquo;t pick them up anymore.
+On a side note, I now know how and where to change/set an icon or make a new app or custom program I can run, and might do so in the future.</p>
+<h2 id="movement-keybindings">Movement Keybindings<a hidden class="anchor" aria-hidden="true" href="#movement-keybindings">#</a></h2>
+<p>Omarchy by default uses <code>SUPER + &lt;arrow key&gt;</code> to navigate between windows, but I&rsquo;m much more comfortable with vim keybinds, and moving to the arrow keys is something I like to avoid if I can. So I&rsquo;m going to change that by adding this to my bindings.conf <em>Omarchy Menu -&gt; Setup -&gt; Keybindings</em></p>
+<pre tabindex="0"><code># ~/.config/hypr/bindings.conf
+
+# Rebind some keybinds to allow for vim motions for window navigation
+unbind = SUPER, K
+unbind = SUPER, J
+bindd = SUPER CTRL, K, Show key bindings, exec, omarchy-menu-keybindings
+bindd = SUPER CTRL, J, Toggle split, togglesplit
+
+# Vim Motions for window navigation
+unbind = SUPER, left
+unbind = SUPER, right
+unbind = SUPER, up
+unbind = SUPER, down
+bindd = SUPER, H, Move focus left, movefocus, l
+bindd = SUPER, L, Move focus right, movefocus, r
+bindd = SUPER, K, Move focus up, movefocus, u
+bindd = SUPER, J, Move focus down, movefocus, d
+
+unbind = SUPER SHIFT, left
+unbind = SUPER SHIFT, right
+unbind = SUPER SHIFT, up
+unbind = SUPER SHIFT, down
+bindd = SUPER SHIFT, H, Swap window to the left, swapwindow, l
+bindd = SUPER SHIFT, L, Swap window to the right, swapwindow, r
+bindd = SUPER SHIFT, K, Swap window up, swapwindow, u
+bindd = SUPER SHIFT, J, Swap window down, swapwindow, d
+</code></pre><h2 id="themes">Themes<a hidden class="anchor" aria-hidden="true" href="#themes">#</a></h2>
+<p>I don&rsquo;t mind the default themes on Omarchy. My favorite is Catpuccin, but there was one on the <a href="https://learn.omacom.io/2/the-omarchy-manual/90/extra-themes">Omarchy Extra Theme Browser</a> that I really liked. <a href="https://github.com/vyrx-dev/omarchy-void-theme">Void</a>. Luckily Omarchy makes it super simple to install and use themes, so under the Omarchy Menu you can navigate to <em>Install -&gt; Style -&gt; Theme</em> and paste in the GitHub link, and it just works.</p>
+<h2 id="neovim">NeoVim<a hidden class="anchor" aria-hidden="true" href="#neovim">#</a></h2>
+<p>Another extremely simple task, but one I had to do regardless. Omarchy comes packaged with a pretty good LazyVim configuration for NeoVim; but I&rsquo;m used to mine, and don&rsquo;t like some of the &ldquo;extra fancy&rdquo; things it adds.
+I renamed <code>~/.config/nvim</code> to <code>~/.config/nvim-omarchy</code> and then cloned my own nvim config from GitHub.
+<a href="https://github.com/Nixo371/nvim">If you want it</a></p>
+<h2 id="ssh">SSH<a hidden class="anchor" aria-hidden="true" href="#ssh">#</a></h2>
+<p>I have a few things that depend on SSH keys. Most importantly, GitHub and my home media server. Both of these are simple to set up again, but GitHub is the easiest.
+Make a new SSH key with <code>ssh-keygen</code> (I make one for each thing), save it in the default location and <em>set a passkey</em>. I can&rsquo;t stress this enough, I know it&rsquo;s your computer, but get in the habit of giving your SSH keys a passkey, I&rsquo;ve seen interns use company laptops with their personal ssh keys, and when they leave, don&rsquo;t remove the ssh keys. You can use <code>ssh-agent</code>, but <em><strong>use a passkey</strong></em>. Anyways, once that&rsquo;s done I log into GitHub, remove the old ones, add the new one, and that&rsquo;s done.
+The media server one is slightly more tricky.
+I ssh into the server with my laptop, whose ssh key is registered. From inside I modify the ssh config file:</p>
+<pre tabindex="0"><code># /etc/ssh/sshd_config
+
+PasswordAuthentication yes
+</code></pre><p>Now I&rsquo;m able to ssh into my media server with my password, <code>ssh-copy-id</code>my new ssh key over, delete the old key by finding the old hostname in <code>~/.ssh/authorized_keys</code> and deleting the line in the file.
+Once that&rsquo;s done, I re-disable password authentication as I enabled it above, and I&rsquo;m done!</p>
+<h2 id="misc">Misc<a hidden class="anchor" aria-hidden="true" href="#misc">#</a></h2>
+<p>Along with all the above, I downloaded Thunderbird as a mail client, Dolphin as my file explorer (I&rsquo;ve heard great things), and Vesktop instead of Discord.
+From the time I&rsquo;ve had Omarchy everything has just felt <em>effortless</em>, and it might be the first time where I can genuinely recommend an OS like Omarchy to anyone interested in starting with Linux. Ubuntu and Linux Mint will always be the OG &ldquo;beginner&rdquo; distributions, but Omarchy definitely throws its hat in the ring.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://blog.nucieda.com/posts/home-server/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Your Home Server Should Be Free*</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.nucieda.com/">Segmentation Fault</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

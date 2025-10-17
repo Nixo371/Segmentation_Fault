@@ -4,10 +4,20 @@
     <title>Posts on Segmentation Fault</title>
     <link>https://blog.nucieda.com/posts/</link>
     <description>Recent content in Posts on Segmentation Fault</description>
-    <generator>Hugo -- 0.148.1</generator>
+    <generator>Hugo -- 0.151.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.nucieda.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I switched to Omarchy; you should, too</title>
+      <link>https://blog.nucieda.com/posts/omarchy/</link>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.nucieda.com/posts/omarchy/</guid>
+      <description>&lt;p&gt;Ever since I put Arch Linux on my laptop, I&amp;rsquo;ve always known I would eventually switch my Windows desktop to Linux as well. I just hadn&amp;rsquo;t found a time or reason to do so. Then Omarchy came out and there was no longer an excuse about &amp;ldquo;it&amp;rsquo;s going to take forever to configure another Arch machine&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;The installation itself was trivial, head to the &lt;a href=&#34;https://omarchy.org/&#34;&gt;Omarchy website&lt;/a&gt;, download the ISO, and load it on an external drive with &lt;a href=&#34;https://rufus.ie/en/&#34;&gt;Rufus&lt;/a&gt;, &lt;a href=&#34;https://etcher.balena.io/&#34;&gt;balenaEtcher&lt;/a&gt;, or my personal favorite, &lt;a href=&#34;https://www.ventoy.net/en/index.html&#34;&gt;Ventoy&lt;/a&gt;
+Then in your computer&amp;rsquo;s BIOS/UEFI, set that drive as your first bootable drive. Once in the Omarchy installer, read through what it says and install away. One interesting thing I found is that Omarchy&amp;rsquo;s installer won&amp;rsquo;t let you install on a drive&amp;rsquo;s partition, only letting you select an entire drive, meaning the entire drive will be formatted and wiped. Make backups!&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Your Home Server Should Be Free*</title>
       <link>https://blog.nucieda.com/posts/home-server/</link>
@@ -31,6 +41,13 @@
       <guid>https://blog.nucieda.com/posts/gnu-make/</guid>
       <description>&lt;h1 id=&#34;the-mistake&#34;&gt;The Mistake&lt;/h1&gt;
 &lt;p&gt;I recently started making a chess app called &lt;code&gt;chessCLI&lt;/code&gt;. The goal is for it to be a CLI interface to play chess and eventually host it on my server so that you can run it just using &lt;code&gt;curl&lt;/code&gt;. Even in its earliest version, it was already the largest C++ project I had ever made, and so manually building wasn&amp;rsquo;t an option. I had already done a lot of projects in C because my first introduction to programming was in a programming school called 42 which taught in C, so I was already quite comfortable with Make, but I wanted to see what else was out there.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://blog.nucieda.com/posts/2025-10-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.nucieda.com/posts/2025-10-01/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>
