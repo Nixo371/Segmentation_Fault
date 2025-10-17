@@ -2,11 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.nucieda.com/posts/omarchy/</loc>
+    <lastmod>2025-10-17T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.nucieda.com/posts/</loc>
-    <lastmod>2025-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nucieda.com/</loc>
-    <lastmod>2025-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.nucieda.com/posts/home-server/</loc>
     <lastmod>2025-08-17T00:00:00+00:00</lastmod>
@@ -16,6 +19,8 @@
   </url><url>
     <loc>https://blog.nucieda.com/posts/gnu-make/</loc>
     <lastmod>2025-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.nucieda.com/posts/2025-10-01/</loc>
   </url><url>
     <loc>https://blog.nucieda.com/categories/</loc>
   </url><url>
