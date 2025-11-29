@@ -19,7 +19,7 @@ Omarchy Menu -> Setup -> Input
 
 kb_options = compose:caps, altwin:swap_alt_win
 ```
-Then, I don't like the default `SUPER + W` to close a window, I prefer `SUPER + W`. I can change that in the Omarchy Menu -> Setup -> Keybindings:
+Then, I don't like the default `SUPER + W` to close a window, I prefer `SUPER + Q`. I can change that in the Omarchy Menu -> Setup -> Keybindings:
 ```
 # ~/.config/hypr/bindings.conf
 
